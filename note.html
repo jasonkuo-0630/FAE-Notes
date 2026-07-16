@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>VMS 學習筆記庫</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo"><span class="dot"></span>VMS 筆記庫</div>
+      <div class="subtitle">GeoVision · FAE Notes</div>
+    </div>
+    <div class="category-list" id="categoryList"></div>
+    <div class="sidebar-footer" id="sidebarFooter"></div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-row">
+        <div>
+          <div class="breadcrumb" id="breadcrumb" style="display:none;"></div>
+          <h1 id="pageTitle">全部筆記</h1>
+          <p class="hero-subtitle" id="heroSubtitle" style="display:none;"></p>
+        </div>
+        <div class="topbar-actions">
+          <button class="hero-btn" id="homeBtn" title="回首頁" onclick="goHome()">首頁</button>
+          <button class="hero-btn" id="expandAllBtn" title="展開/收合全部筆記" onclick="toggleAllNotes()">全部展開</button>
+          <button class="theme-toggle" id="themeToggle" title="切換亮暗模式" onclick="toggleTheme()"></button>
+        </div>
+      </div>
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="輸入關鍵字搜尋筆記內容、標籤或標題...">
+        <svg id="searchClearBtn" class="search-clear-btn" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;" onclick="clearSearchInput()" title="清除搜尋">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </div>
+      <div class="search-meta" id="searchMeta"></div>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+
+</div>
+
+<script src="notes-data-core.js"></script>
+<script src="notes-vms-overview.js"></script>
+<script src="notes-liveview.js"></script>
+<script src="notes-events.js"></script>
+<script src="notes-ipdevice.js"></script>
+<script src="notes-camerasettings.js"></script>
+<script src="notes-recordsetting.js"></script>
+<script src="notes-systemconfig.js"></script>
+<script src="notes-playback.js"></script>
+<script src="notes-misc.js"></script>
+<script src="notes-troubleshooting.js"></script>
+<script src="notes-license.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
