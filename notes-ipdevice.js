@@ -18,7 +18,7 @@ notes.push(
     sections: [
       { 
         type: "text", 
-        content: "IP Device Setup 是 GV-VMS 中用來連接、加入與管理 IP Camera / IP Device 的設定入口，功能位置也可理解為 Camera Install。不同設備的加入流程可能略有差異，實務上可依照設備狀態選擇手動新增、掃描、批次加入或匯入清單。" 
+        content: "IP Device Setup 是 GV-VMS 中用來連接、加入與管理 IP Camera / IP Device 的設定入口，功能位置也可理解為 Camera Install。<br>不同設備的加入流程可能略有差異，實務上可依照設備狀態選擇手動新增、掃描、批次加入或匯入清單。" 
       },
       { type: "spacer" },
       {
@@ -54,7 +54,7 @@ notes.push(
       { 
         type: "text", 
         title: "Automatic Setup 初始畫面", 
-        content: "當 GV-VMS 第一次開啟，或目前沒有加入任何 Camera 時，系統可能會自動跳出 Automatic Setup。可以理解成：VMS 偵測到目前沒有 Camera，所以主動提示使用者掃描並加入設備。如果當下還不想加入 Camera，可以先關閉視窗，之後再從 IP Device Setup 進入相關功能。" 
+        content: "當 GV-VMS 第一次開啟，或目前沒有加入任何 Camera 時，系統可能會自動跳出 Automatic Setup。<br>可以理解成：VMS 偵測到目前沒有 Camera，所以主動提示使用者掃描並加入設備。如果當下還不想加入 Camera，可以先關閉視窗，之後再從 IP Device Setup 進入相關功能。" 
       },
       { type: "image", num: 2, label: "IP Device Setup 初始畫面 - Automatic Setup " },
       { 
@@ -139,13 +139,13 @@ notes.push(
         title: "Brand = GeoVision :",
         content: "GeoVision 的 Device 選單會顯示 GeoVision 自家品牌的產品名稱。"
       },
+      { type: "image", num: 2, label: "Add Camera：選擇 Brand（GeoVision / USAVision / Protocol）" },
+      { type: "image", num: 3, label: "Add Camera：Device 選項（Brand 選 GeoVision 時）" },
       {
         type: "note",
         title: "實務注意",
         content: "可以選擇 Auto Detect 自動偵測產品型號，後續新機種可能不會在選單列表中，這種狀況一律選擇<code>IP Device</code> " 
       },
-      { type: "image", num: 2, label: "Add Camera：選擇 Brand（GeoVision / USAVision / Protocol）" },
-      { type: "image", num: 3, label: "Add Camera：Device 選項（Brand 選 GeoVision 時）" },
       { type: "spacer" },
       {
         type: "text",
@@ -320,7 +320,7 @@ notes.push(
     sections: [
       {
         type: "text",
-        content: "GV-IP Device Utility 是 GeoVision 提供的外部 IP Device 管理工具，可用來偵測 LAN 內的 GV-IP Devices，並將偵測到的 Camera 對應到指定 channel。整理完成後，可將設備清單或設定匯入 GV-VMS，減少逐台手動加入 Camera 的時間。"
+        content: "GV-IP Device Utility 是 GeoVision 提供的外部 IP Device 管理工具，可用來偵測 LAN 內的 GV-IP Devices，並將偵測到的 Camera 對應到指定 channel。<br>整理完成後，可將設備清單或設定匯入 GV-VMS，減少逐台手動加入 Camera 的時間。"
       },
       { type: "spacer" },
       {
@@ -369,7 +369,7 @@ notes.push(
       {
         type: "text",
         title: "Camera List / Dispatch Pattern",
-        content: "GV-IP Device Utility 介面中，Camera List 可用來查看 LAN 內偵測到的設備；Dispatch Pattern 則可用來安排 Camera 要對應到的 channel。整理完成後，再將清單匯入 GV-VMS 使用。"
+        content: "GV-IP Device Utility 介面中，Camera List 可用來查看 LAN 內偵測到的設備；Dispatch Pattern 則可用來安排 Camera 要對應到的 channel。<br>整理完成後，再將清單匯入 GV-VMS 使用。"
       },
       { type: "image", num: 4, label: "IP Device Utility：把設備加入 Dispatch Pattern／清單" },
       { 
