@@ -49,12 +49,8 @@ notes.push(
       },
       { type: "image", num: 2, label: "GeoVision License Activation Tool(GV-USB Dongle) 介面" },
       {
-        type: "text",
-        title: "實務提醒",
-      },
-      {
         type: "list",
-        title: "",
+        title: "實務提醒",
         items: [
           "<strong>GV-USB Dongle 不提供熱插拔</strong>，首次插上 GV-USB Dongle 並安裝完 Driver 須重啟 Windows 讓系統讀取。",
           "由於本測試機是同時擁有 GV-USB Dongle / Software License 的測試環境，<strong>同時擁有兩種授權時系統會以 GV-USB Dongle 讀取為優先</strong>，上方也有提示 : 如欲使用Software License ，需先移除已安裝至 Windows 的 GV-USB Dongle 。"

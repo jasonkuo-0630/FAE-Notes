@@ -85,43 +85,115 @@ notes.push(
   },
 {
     id: "vms-03",
-    title: "Live View：Zoom / Scan / Popup Window 差異",
+    title: "Live View：Zoom / Scan / Popup Window 介紹",
     category: "Live View",
     categoryId: "gvvms",
     subgroupId: "liveview",
     tags: ["Zoom Window", "Scan Window", "Popup Window"],
-    updated: "2026-07-16",
+    updated: "2026-07-17",
     status: "ok",
-    related: ["vms-02", "hw-1", "vms-32"],
+    related: ["vms-02", "vms-32"],
+
+    // 參考文獻：GV-VMS Quick Guide V20，Chapter 4 Live View，4.2 Functions on the Live View，4.2.1 Zoom Window / 4.2.2 Scan Window / 4.2.3 Popup Window，p.17-19；
+    // GV-VMS User's Manual V17，Chapter 1 Configuring Main System，1.10.1 Popping up Live View，p.52
     sections: [
       {
         type: "text",
-        content: "Live View 左側 Layout 中的 Windows 功能是特殊顯示容器，不是一般 Camera：Zoom Window 放大顯示、Scan Window 輪播顯示、Popup Window 事件觸發顯示。"
+        content: "Live View 左側 Layout 中的 Windows 是特殊顯示容器，不是一般 Camera Channel。<br>Zoom Window 用於放大顯示、Scan Window 用於多台 Camera 輪播、Popup Window 用於事件觸發時顯示指定 Camera 畫面。"
       },
+      { type: "spacer" },
       {
         type: "text",
         title: "Zoom Window",
-        content: "專門顯示放大影像，可承接手動 Zoom 或事件 Popup。沒有設定 Zoom Window 時，按下 Zoom 通常直接全螢幕；有設定時，畫面會投影到 Zoom Window。若搭配 Camera Popup Setting，事件發生時可能會把目前 Zoom Window 內的畫面搶走，事件結束後不一定自動回到原本畫面。"
+        content: "Zoom Window 是指定一個 Layout 分割畫面作為放大顯示區。<br>一般情況下，Camera Live View 右上角的 Zoom 會切換到全螢幕；若 Layout 中已放入 Zoom Window，按下 Zoom 後畫面會顯示到 Zoom Window，而不改變原本整體 Layout。"
       },
+      { type: "image", num: 1, label: "Zoom Window 示意圖" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "不指定 Zoom Window 的畫面表現",
+        content: "不指定 Zoom Window 時，點擊 Camera Live View 右上角的 Zoom 會直接佔滿全螢幕。"
+      },
+      { type: "image", num: 2, label: "不指定 Zoom Window 時的畫面呈現" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "指定 Zoom Window 的畫面表現",
+        content: "指定 Zoom Window 時，點擊 Camera Live View 右上角的 Zoom 後畫面會顯示到 Zoom Window，不會改變原本整體 Layout。"
+      },
+      { type: "image", num: 3, label: "指定 Zoom Window 時的畫面呈現" },
+      {
+        type:"note",
+        title:"Zoom Window 實務補充",
+        content:"Zoom Window 的畫面左上角 Camera 名稱會多一個<code>+</code>。"
+      },
+      { type: "spacer" },
       {
         type: "text",
         title: "Scan Window",
-        content: "輪播 Camera 影像的視窗格，可將多支 Camera 加入同一個視窗依序輪流顯示。<code>Scan Interval</code> 決定每支 Camera 停留幾秒（例如 5 sec），<code>Default Scan Interval</code> 可快速套用到清單中所有 Camera。"
+        content: "Scan Window 是用來輪播多台 Camera 的顯示容器。<br>可將多支 Camera 加入同一個 Scan Window，系統會依清單順序輪流顯示。"
       },
+      { type: "image", num: 4, label: "Scan Window 示意圖" },
+      {
+        type:"note",
+        title:"Scan Window 實務補充",
+        content:"Scan Window 的畫面左上角 Camera 名稱會多一個<code>@</code>。"
+      },
+      { type: "spacer" },
+      {
+        type:"list",
+        title: "Scan Window 設定介面",
+        items: [
+          "<strong>Default Scan Interval</strong>：決定每支 Camera 顯示幾秒，也可套用相同間隔到所有 Camera。",
+          "<strong>Show Caption</strong>：決定是否顯示 Camera 資訊以及設定其字體大小。",
+          "<strong>Keep Image Ratio</strong>：選擇是否保持影像原始畫面比例。"
+        ] 
+      },
+      { type: "image", num: 5, label: "Scan Window 設定介面" },
+      { type: "spacer" },
       {
         type: "text",
         title: "Popup Window",
-        content: "事件觸發專用視窗，需先透過右鍵新增/設定才會出現在 Windows 清單中，平常可以是空白狀態，事件發生後才顯示對應 Camera 畫面。<code>Dwell Time</code> 管停留多久，<code>Interrupt Interval</code> 管多個事件連續觸發時下一個 Popup 畫面切入前的間隔，避免事件太密集時畫面一直跳來跳去。"
+        content: "Popup Window 是事件觸發用的顯示容器，可指定某個 Layout 分割畫面專門顯示 Popup 事件影像。<br>官方流程是先建立另一個 Live View Layout，可選擇套用到指定 Monitor，再新增 Camera Popup Window 並拖曳到該 Layout 中。事件觸發時，指定 Camera 的 Live View 會顯示在這個 Popup Window 中。"
       },
+      { type: "image", num: 6, label: "Popup Window 示意圖" },
+      {
+        type:"note",
+        title:"Popup Window 實務補充",
+        content:"Popup Window 的畫面左上角 Camera 名稱會多一個<code>!</code>。"
+      },
+      { type: "spacer" },
+      {
+        type:"list",
+        title: "Popup Window 設定介面",
+        items: [
+          "<strong>Dwell Time</strong>：事件觸發後，Popup 畫面停留多久。",
+          "<strong>Interrupt Interval</strong>：多個事件連續觸發時，下一個 Popup 畫面切進來前的間隔。",
+          "<strong>Select the events you want to pop up</strong>：哪些事件類型、哪些 Camera 觸發後要顯示在這個 Popup Window。",
+          "<strong>Input Invoke</strong>：例如門磁、紅外線感測器、按鈕、I/O Box Input 被觸發時，可以指定某支 Camera 畫面顯示在 Popup Window。"
+        ] 
+      },
+      { type: "image", num: 7, label: "Popup Window 設定介面" },
+      { type: "spacer" },
       {
         type: "text",
-        title: "三者與 Camera Popup Setting 的關係（實測補充）",
-        content: "實測發現，如果 Camera Popup Setting 有設定事件觸發，即使 Layout 沒有預先放 Camera 畫面，事件觸發時 GV-VMS 仍可能把該 Camera 畫面顯示出來；若沒設定 Popup Window 或 Zoom Window，事件畫面可能直接佔用目前 Live View 顯示區。可以理解為：<strong>Camera Popup Setting 決定要不要彈，Popup / Zoom Window 或空 Layout 只決定彈到哪裡。</strong>"
+        title: "Popup Window 內設定與 System Configure 的 Camera Popup Setting 差異",
+        content: "Popup Window 內的 Camera Popup Setting 與 System Configure 裡的 Camera Popup Setting 名稱相近，設定介面也很像，但兩者是分開設定，彼此不共用。<br>Popup Window 內的 Camera Popup Setting 是針對該 Popup Window 容器設定事件條件，事件觸發後畫面會顯示在指定的 Popup Window 分割畫面中。<br>System Configure 裡的 Camera Popup Setting 則是主系統的 Camera Popup 規則；實測上，若未在 Layout 中指定 Zoom Window，事件觸發時會以單分割方式直接佔滿主顯示器畫面；若有指定 Zoom Window，事件畫面會顯示到 Zoom Window。"
+      },
+      {
+        type:"note",
+        title:"實務理解",
+        content:"Popup Window / Camera Popup Setting 都需要對應事件成立才會觸發，而事件要成立通常需要相關 Monitoring 開啟。"
+      },
+      {
+        type: "note",
+        title: "易混淆觀念釐清",
+        content: "兩個地方都叫 Camera Popup Setting，但作用範圍不同：Popup Window 內的是綁定指定 Popup Window；System Configure 內的是主系統 Popup 規則。兩者設定分開，互不干擾。"
       },
       {
         type: "callout",
         label: "記憶點",
-        content: "Zoom 放大、Scan 輪播、Popup 事件顯示——三者是顯示位置的容器，真正決定要不要觸發顯示的是 Camera Popup Setting。"
+        content: "Zoom Window 是放大顯示區，Scan Window 是輪播顯示區，Popup Window 是事件專用顯示區。Popup Window 決定事件畫面顯示位置；Camera Popup Setting 則設定事件彈窗規則，兩者設定介面相近但彼此獨立。"
       }
     ]
   }
