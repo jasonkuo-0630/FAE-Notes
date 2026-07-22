@@ -10,17 +10,20 @@ notes.push(
     updated: "2026-07-16",
     status: "ok",
     related: ["ipcam-1", "vms-25", "vms-27"],
+
+    // 參考文獻：GV-VMS Feature Guide V20，Chapter 3 Video Analysis，3.3 Easy AI Event Adjustment，p.22-23；
+    // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，4.3 Smart PVD Motion Search，p.33-34；
+    // 參考文獻：GV-VMS Feature Guide V20，Chapter 5 GV-IP Speaker Integration，5.3 Motion-Triggered Audio on GV-IP Speaker，p.40-41
     sections: [
       {
-        type: "text",
-        title: "Motion Detection",
-        content: "是一般位移偵測，主要判斷畫面中是否有變動，但它不一定知道變動的是人、車、樹影、光線或其他物體。"
+        type: "list",
+        title: "Motion Detection 與 PVD Motion 的差異",
+        items: [
+          "<strong>Motion Detection</strong>：一般位移偵測，主要判斷畫面中是否有變化或移動，但不會進一步判斷變動來源是人、車、樹影、光線或其他物體。<br>因此容易受到環境變化、反光、陰影或背景移動影響。",
+          "<strong>PVD Motion</strong>：PVD（People / Vehicle Detection）是人車偵測，會判斷畫面中的移動目標是否符合 People / Vehicle 條件。<br>PVD Motion 則是以人車偵測事件作為觸發來源，例如用來觸發錄影、事件通知或其他連動。"
+        ]
       },
-      {
-        type: "text",
-        title: "PVD Motion",
-        content: "（People / Vehicle Detection）會判斷畫面中是否有人或車，PVD Motion 指的是以人車偵測事件作為觸發條件。"
-      },
+      { type: "spacer" },
       {
         type: "text",
         content: "實務理解："
@@ -28,8 +31,8 @@ notes.push(
       {
         type: "flow",
         steps: [
-          "Motion Detection：畫面有動 → 觸發",
-          "PVD Motion：偵測到人或車 → 觸發"
+          "Motion Detection：畫面有變化 / 移動 → 觸發",
+          "PVD Motion：偵測到符合條件的人或車 → 觸發"
         ]
       },
       {
@@ -38,18 +41,18 @@ notes.push(
       },
       {
         type: "list",
-        title: "",
+        title: "實務注意",
         items: [
-          "Record Type 選 PVD Motion，代表錄影觸發來源是 PVD 事件",
-          "一般 Motion Detection 可能仍然存在",
-          "其他功能可能仍使用一般 Motion，例如 Event List、Camera Popup、Smart Motion Search",
-          "若要降低誤報，可能需要同時設定 Motion 區域與 PVD ROI / Mask"
+          "Record Type 選 PVD Motion，代表錄影觸發來源是 PVD 人車事件，而不是單純畫面變化。",
+          "若要使用 PVD Motion，需要先在對應 Camera 的 Motion / Advanced Motion Detection Setup 中啟用 PVD。",
+          "Smart PVD Motion Search 需要在錄影前同時啟用 PVD 與 Enable Smart Motion Search，之後才能在 Playback / Object Search 中依指定區域快速搜尋人車活動。",
+          "PVD 通常可減少一般 Motion Detection 的誤報，但不代表完全不會誤判，仍需搭配 ROI、Mask、Size Filter 與實際回放確認。"
         ]
       },
       {
         type: "callout",
         label: "記憶點",
-        content: "Motion Detection 是「有沒有動」，PVD 是「動的是不是人或車」——PVD 更精準，但兩者可能要分開設定才會真正減少誤報。"
+        content: "Motion Detection 看的是「畫面有沒有動」；PVD Motion 看的是「是否偵測到符合條件的人或車」。PVD 較適合降低一般 Motion 誤報，但仍需靠區域、遮罩與尺寸條件調整。"
       }
     ]
   },
@@ -63,46 +66,70 @@ notes.push(
     updated: "2026-07-16",
     status: "ok",
     related: ["vms-04", "vms-26", "vms-27", "vms-29", "vms-35", "vms-43"],
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，1.3.4 Setting Up Motion Detection，p.24-29
+    // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，4.3 Smart PVD Motion Search，p.31
+    // 參考文獻：GV-VMS PVD Motion Detection Usage and Case Studies，Article ID: GV1-23-05-30
     sections: [
       {
         type: "text",
-        content: "在 Advanced Motion Detection Setup 中，可以針對 Motion Detection 做更細部的設定。如果要使用 VMS 軟體端的進階 Motion 設定，通常需要關閉 <code>Enable Camera's Built-in Motion Detection</code>，也就是改由 GV-VMS 端進行 Motion Detection，而不是 Camera 端判斷。"
+        content: "在 Advanced Motion Detection Setup 中，可以針對 Motion Detection 做更細部的設定。<br>如果要使用 VMS 軟體端的進階 Motion 設定，需要關閉 <code>Enable Camera's Built-in Motion Detection</code>，也就是改由 GV-VMS 端進行 Motion Detection，而不是 Camera 端判斷。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "Advanced Motion Detection Setup介面",
       },
       { type: "image", num: 1, label: "Advanced Motion Detection Setup：Set Region 畫面" },
       {
         type: "text",
-        title: "Set Region 與 Mask Region",
-        content: "Set Region 是加法——指定「我要偵測這裡」，預設情況下偵測範圍可能涵蓋整個畫面，可用區域設定只偵測門口、走道等。Mask Region 是減法——指定「這裡不要偵測」，適合排除電風扇、樹葉晃動、窗戶反光等固定會動但不重要的物件。兩者都能做出同樣的最終偵測範圍，但邏輯不同：Set Region 是從 0 開始加，Mask Region 是從整體扣掉。"
+        title: "Set Region / Region Sensitivity 與 Mask Region",
+        content: "Set Region / Region Sensitivity 是針對畫面中特定區域調整 Motion Detection 靈敏度，可用來加強或降低某些區域的偵測反應；Mask Region 則是指定不偵測的區域，適合排除電風扇、樹葉晃動、窗戶反光、螢幕閃爍等固定容易造成誤報的位置。<br>簡單理解：Region Sensitivity 是調整區域靈敏度，Mask Region 是直接排除區域。"
       },
-      {
-        type: "text",
-        title: "Sensitivity（靈敏度）",
-        content: "越高越容易觸發，小動作也可能被偵測，但誤報可能增加；越低則觸發條件較嚴格，可能降低誤報但也可能漏報。"
-      },
-      {
-        type: "text",
-        content: "<strong>Noise Tolerance</strong> 不是消除雜訊，而是讓 Motion Detection 判斷時不要把影像雜訊（例如低光源環境的閃動）誤判成 Motion。<strong>Ignore environmental changes</strong> 是降低雨、雪這類環境因素被判定為 Motion 的機率，不是完全不偵測。官方文件的定義是：當物體以穩定且重複的方式，朝相同方向持續運動<strong>超過 1.5 秒</strong>，系統就會將其過濾並忽略，不觸發 Motion 事件。"
-      },
-      {
-        type: "text",
-        content: "<strong>Minimum Duration</strong> 是 Motion 必須持續幾秒以上才算事件，用來降低短暫雜訊、瞬間光影變化造成的誤報。<strong>Process Video in Lower Resolution</strong> 用較低解析度分析畫面，可降低 CPU 負擔，但細節變少、對小物件判斷可能較不精準。<strong>Enable Smart Motion Search</strong> 是在錄影時建立可供 Smart Search 使用的 Motion 索引，之後 Playback 搜尋時能更快找到有 Motion 的時間點。"
-      },
-      { type: "image", num: 2, label: "未啟用 Enable Camera's Built-in Motion Detection：改由 VMS 端判斷" },
-      { type: "image", num: 3, label: "啟用 Enable Camera's Built-in Motion Detection：由 Camera 端判斷" },
-      {
-        type: "text",
-        title: "Record：Motion / PVD Motion",
-        content: "可選擇這個 Camera 的錄影事件來源要用一般 Motion Detection 還是 PVD Detection。要注意，這裡選 PVD Motion 只代表錄影觸發來源改成 PVD，不代表一般 Motion Detection 在整個 VMS 裡完全消失——Event List、Camera Popup Setting、Smart Motion Search 等其他功能仍可能依各自設定使用一般 Motion。<strong>Video Record Type</strong> 則是指定這類事件要套用 Urgent Event 還是 General Event 的錄影幀率策略。最後 <strong>Register Motion Event</strong> 決定 Motion 被觸發時要不要把事件登錄到事件紀錄中。"
-      },
+      { type: "spacer" },
       {
         type: "note",
-        title: "實測補充",
-        content: "Record 選 <strong>Motion</strong> 時（在 PVD Detection 也是 Enable 的前提下），Motion 與 PVD 事件都會觸發錄影；但 Record 選 <strong>PVD Motion</strong> 時，只有 PVD 事件會觸發錄影，一般 Motion 不會。可以理解成 PVD 本來就是 Motion 的一種子集合（人車出現本身也是一種畫面變動）——選 Motion 是廣撒網，PVD 事件自然包含在內；選 PVD Motion 則是刻意收窄範圍，只留下人車事件，如果選了 PVD Motion 卻連一般 Motion 也一起觸發，那 PVD 這層過濾就沒有意義了。"
+        title: "實務補充",
+        content: "Sensitivity（靈敏度）越高越容易觸發，小動作也可能被偵測，但誤報可能增加；越低則觸發條件較嚴格，可能降低誤報但也可能漏報。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "關閉 H/W Motion 後的選項列表",
+      },
+      { type: "image", num: 2, label: "未啟用 Enable Camera's Built-in Motion Detection：改由 VMS 端判斷" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "開啟 H/W Motion 後的選項列表",
+      },
+      { type: "image", num: 3, label: "啟用 Enable Camera's Built-in Motion Detection：由 Camera 端判斷" },
+      {
+        type: "list",
+        title: "降低誤報相關設定",
+        items: [
+          "<strong>Noise Tolerance</strong>：忽略影像雜訊，避免低光源、畫面閃動等雜訊被誤判成 Motion。",
+          "<strong>Ignore Environmental Changes</strong>：降低雨、雪等環境變化造成的誤報。官方定義是：當物件以穩定且重複的方式朝相同方向移動超過 1.5 秒，系統會將其過濾並忽略。",
+          "<strong>Minimum Duration</strong>：Motion 必須持續指定秒數以上才觸發，用來降低瞬間雜訊或短暫光影變化造成的誤報。",
+          "<strong>Process Video in Lower Resolution</strong>：以較低解析度進行 Motion Detection，可降低 CPU 負擔，但可能影響偵測準確度。",
+          "<strong>Enable Smart Motion Search</strong>：錄影時建立可供 Smart Search 使用的 Motion 索引，之後 Playback / Object Search 搜尋時能更快查找指定區域內的 Motion 片段。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "list",
+        title: "Record：Motion / PVD Motion 設定介紹",
+        items: [
+          "<strong>Motion</strong>：選擇一般 Motion Detection，只要畫面有變動就會觸發 Motion 事件，也<code>包括PVD Motion在內</code>。",
+          "<strong>PVD Motion</strong>：選擇 PVD Motion ，只會偵測 PVD Motion。",
+          "<strong>Video Record</strong>：用來指定該類事件套用 Urgent Event 或 General Event 的錄影幀率策略。",
+          "<strong>Register Motion Event</strong> 則決定 Motion 被觸發時是否登錄到 System Log。"
+        ]
       },
       {
         type: "callout",
         label: "記憶點",
-        content: "Set Region 是「我要看這裡」，Mask Region 是「這裡不要看」；Sensitivity 越高越敏感，Noise Tolerance 是忽略雜訊不是消除雜訊。"
+        content: "Motion Detection 是一般畫面變動偵測；PVD Motion 是人車事件偵測。<br>Region Sensitivity 是調整偵測區域靈敏度，Mask Region 是排除不偵測區域；Sensitivity 越高越容易觸發，Noise Tolerance 則是忽略雜訊，不是消除雜訊。"
       }
     ]
   },
@@ -116,27 +143,37 @@ notes.push(
     updated: "2026-07-16",
     status: "ok",
     related: ["vms-25"],
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，1.3.4 Setting Up Motion Detection，Advanced Motion Detection Setup / Define Object，p.27
     sections: [
       {
         type: "text",
-        content: "User-defined 搭配 Define Object，可以用物件大小來過濾 Motion，而不是調整區域靈敏度。"
+        content: "Define Object 是用物件大小範圍來過濾 Motion Detection。選擇 User-defined 後，可設定 Min Object Size 與 Max Object Size，讓系統只針對指定大小範圍內的變動進行偵測。"
       },
-      { type: "image", num: 1, label: "Define Object：Min Object Size 設定畫面" },
+      { type: "spacer" },
       {
         type: "text",
         title: "Min Object Size",
-        content: "是設定最小物件尺寸，小於這個尺寸的變動會被忽略，適合排除小飛蟲、小光點、細微晃動這類雜訊。"
+        content: "設定最小物件尺寸。小於 Min Object Size 的變動會被忽略，適合排除小飛蟲、小光點、細微晃動或低光源雜訊。"
       },
-      { type: "image", num: 2, label: "Define Object：Max Object Size 設定畫面" },
+      { type: "image", num: 1, label: "Define Object：Min Object Size 設定畫面" },
+      { type: "spacer" },
       {
         type: "text",
         title: "Max Object Size",
-        content: "是設定最大物件尺寸，大於這個尺寸的變動會被忽略，適合排除整片光線變化、鏡頭晃動、大面積陰影變化這類大範圍誤判。"
+        content: "設定最大物件尺寸。大於 Max Object Size 的變動會被忽略，適合降低大面積光線變化、陰影變化或畫面大範圍變動造成的誤報。"
       },
+      { type: "image", num: 2, label: "Define Object：Max Object Size 設定畫面" },
+      {
+        type: "note",
+        title: "實務補充",
+        content: "Object Size 與 Region Sensitivity 是不同調整方向。Object Size 是用物件大小範圍過濾 Motion；Region Sensitivity 是針對不同畫面區域調整靈敏度。若是固定區域不想偵測，則應使用 Mask Region 排除。"
+      },
+      { type: "spacer" },
       {
         type: "callout",
         label: "記憶點",
-        content: "Min Object Size 是「太小的不算」，Max Object Size 是「太大的不算」。"
+        content: "有效 Motion 要介於 Min Object Size 與 Max Object Size 之間；太小的不算，太大的也不算。"
       }
     ]
   },
@@ -150,40 +187,60 @@ notes.push(
     updated: "2026-07-16",
     status: "ok",
     related: ["vms-28", "vms-04", "vms-25", "vms-35"],
+
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / Advanced Motion Detection Setup
+    // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，Smart PVD Motion Search，p.30
+    // 參考文獻：GV-VMS V20 產品頁，AI Query / Smart PVD Motion Search 功能說明
     sections: [
       {
         type: "text",
-        content: "PVD 是 People / Vehicle Detection，不是單純偵測畫面有沒有變動，而是偵測畫面中是否出現特定目標（人或車）。因此 PVD 比一般 Motion Detection 更能降低電風扇、樹葉、光影、反光這類非人車物件造成的誤報——但 PVD 不是萬能，仍可能受光線不足、角度不佳、遮擋、物件太小或太模糊、相似形狀誤判等因素影響。"
+        content: "PVD 是 People / Vehicle Detection，不是單純偵測畫面有沒有變動，而是判斷畫面中是否出現符合條件的人或車。<br>相較一般 Motion Detection，PVD 通常更能降低電風扇、樹葉、光影、反光等非人車物件造成的誤報；但 PVD 不是萬能，仍可能受到光線不足、角度不佳、遮擋、目標太小或太模糊、相似形狀等因素影響。"
       },
-      {
-        type: "callout",
-        label: "記憶點",
-        content: "Motion 是有動就可能算，PVD 是人車出現才比較算。"
-      },
+      { type: "spacer" },
       {
         type: "text",
         title: "PVD Enable",
-        content: "如果 Record 選擇 <code>PVD Motion</code>，系統會強制啟用 PVD Enable 且不允許取消——因為錄影觸發來源選了 PVD Motion，PVD 功能就必須啟用，否則無法作為錄影判斷依據。"
+        content: "PVD Enable 是啟用 People / Vehicle Detection 的開關。<br>若要使用 PVD Motion 作為錄影或事件觸發來源，就必須啟用 PVD，否則系統無法以人車偵測結果作為判斷依據。"
       },
+      { type: "image", num: 1, label: "PVD Enable 示意圖" },
+      {
+        type: "note",
+        title: "實測補充",
+        content: "實測時發現：當 Record 選擇 <code>PVD Motion</code> 時，系統會自動勾選 PVD Enable，且不允許取消。<br>可理解為錄影觸發來源已指定為 PVD，因此 PVD 功能必須維持啟用。"
+      },
+      { type: "spacer" },
       {
         type: "text",
         title: "偵測目標類型",
-        content: "可選擇 People Detection（只偵測人）、Vehicle Detection（只偵測車）、People or Vehicle Detection（人或車任一種被偵測到都可觸發事件）。"
+        content: "PVD 可選擇偵測目標類型，例如 People Detection（只偵測人）、Vehicle Detection（只偵測車）、People or Vehicle Detection（偵測到人或車任一種目標都可觸發事件）。"
       },
+      { type: "image", num: 2, label: "偵測目標類型選擇列表" },
+      { type: "spacer" },
       {
         type: "text",
-        title: "Max / Selected",
-        content: "Max 是目前系統可使用 PVD 功能的最大通道數，會受授權數量、PC 效能、是否有 AI Event／PVD 授權、AI 加速硬體、GV-VMS 版本與授權狀態影響，未啟用對應授權時 Max 可能顯示 0。Selected 是目前已經啟用 PVD 的通道數。PVD／AI Event 授權可能會綁定該台 PC 環境，若重灌或更換主機，可能需要重新申請或重新啟用授權。"
+        title: "PVD Motion 設定",
+        content: "進行 PVD Motion 詳細設定。"
+      },
+      { type: "image", num: 3, label: "PVD Motion 詳細設定示意圖" },
+      {
+        type: "list",
+        title: "PVD Motion 設定介紹",
+        items: [
+          "<strong>Max / Selected</strong>：Max 表示目前系統可啟用 PVD 的最大通道數；Selected 表示目前已啟用 PVD 的通道數。<br>Max 可能受到 GV-VMS 版本、授權狀態、Camera 支援能力與系統資源影響。若未啟用或不支援對應功能，Max 可能顯示為 0。",
+          "<strong>PVD Sensitivity</strong>：PVD Sensitivity 是 PVD 的整體偵測敏感程度。<br>數值越高越容易觸發，較容易偵測到目標，但誤報也可能增加；數值越低則判斷較保守，可能降低誤報但也可能漏報。",
+          "<strong>Absence Event Detection</strong>：Absence Event Detection 是缺席事件偵測，不是單純沒有 Motion 就通知，而是指定目標在設定區域內持續不存在超過指定時間後才觸發事件。<br>常見情境例如停車格應有車但長時間沒有車、指定崗位應有人但長時間沒有人，或特定區域需要持續有指定目標存在時使用。<br>通常會搭配偵測類型、偵測區域與 Tolerance Time of Alarm 一起設定。"
+        ]
       },
       {
-        type: "text",
-        title: "PVD Sensitivity",
-        content: "是整體偵測敏感程度，越高越容易觸發但誤報可能增加，越低越保守。要注意 Sensitivity 跟 Confidence 不完全相同：Sensitivity 是整體敏感程度，Confidence 是 AI 判斷這個物件有多像人／車的信心分數門檻（下一篇會細講）。"
+        type: "note",
+        title: "授權提醒",
+        content: "PVD / AI 相關功能是否可用，需依 GV-VMS 版本、授權項目、Camera 支援能力與實際系統環境確認。若更換主機或重灌系統，授權狀態也可能需要重新確認。"
       },
       {
-        type: "text",
-        title: "Absence Event Detection",
-        content: "是缺席事件偵測，不是單純沒有 Motion 就通知，而是指定目標物件在指定時間內持續不存在才觸發事件，例如停車格應該有車但超過指定時間沒有車、指定崗位應該有人但超過指定時間沒有人。通常會搭配偵測類型、偵測區域與 Tolerance time of alarm 一起使用。"
+        type: "note",
+        title: "Sensitivity 與 Confidence 的差異",
+        content: "Sensitivity 可理解為偵測敏感程度；Confidence 則偏向 AI 判斷目標像不像人 / 車的信心分數門檻。兩者概念不同：Sensitivity 影響系統容易不容易觸發，Confidence 影響判斷結果要多有把握才被接受。"
       }
     ]
   },
@@ -197,26 +254,60 @@ notes.push(
     updated: "2026-07-16",
     status: "ok",
     related: ["vms-27", "vms-29"],
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / PVD Setting
+    // 參考文獻：GV-VMS User's Manual V20，Event List / AI Query，PVD event type、confidence、size 顯示
     sections: [
       {
         type: "text",
-        content: "Confidence 是 AI 判斷某個物件屬於某類別的信心分數門檻。例如 Event List 可能顯示 <code>People, conf(90, 90), size(1/6, 1/6)</code>：People 是系統判斷目標是人，conf 是 AI 判斷該目標是人的信心分數，size 是目標物件在畫面中的尺寸比例。"
+        content: "Confidence 是 PVD 判斷目標屬於人或車的信心門檻。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "PVD Setting：Confidence 介紹",
+        content: "數值越高，系統判斷越嚴格，通常誤報較少；數值越低，系統較容易接受偵測結果，但誤報可能增加。"
       },
       { type: "image", num: 1, label: "PVD Setting：Confidence 各類別預設信心分數" },
       {
         type: "text",
-        content: "Confidence 設太低比較容易偵測到，但可能增加誤判；設太高判斷比較嚴格、誤判可能降低，但也可能漏掉遠處、模糊、角度不佳的人或車。實務上可以依 Event List 中的 conf 與 size 資訊調整，公司若有測試過的推薦值（例如 <code>High Precision</code>），可以作為較保守的設定參考。"
+        title: "Event List 中的 conf / size",
+        content: "PVD Event 會在 Event List / AI Query 顯示偵測類型、Confidence 與 Size 等資訊。<br>例如 <code>People, conf(90, 90), size(1/6, 1/6)</code>，可理解為系統判斷目標是 People，並顯示該偵測結果的信心值與目標大小資訊。"
+      },
+      {
+        type: "note",
+        title: "實務提醒",
+        content: "Event List 中的 <code>conf(...)</code> 與 <code>size(...)</code> 可作為調整 PVD 設定的參考，但括號內數值的細部意義若未由官方或內部文件確認，不建議在筆記中寫得過死。<br>實務上可先用來判斷目前偵測結果是偏保守、偏寬鬆，或是否因目標太小造成漏判。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "Confidence 設定邏輯",
+        content: "Confidence 設太低時，遠處、模糊或角度不佳的目標比較容易被接受，但誤判機率也可能提高；Confidence 設太高時，判斷較嚴格，誤報可能降低，但也可能漏掉遠處、被遮擋、模糊或角度不佳的人 / 車。"
       },
       { type: "image", num: 2, label: "PVD Setting：Confidence 下拉選單，Default / High Precision" },
       {
+        type: "note",
+        title: "Default / High Precision",
+        content: "<strong>Default</strong> 可作為一般設定；<strong>High Precision</strong> 則可理解為較保守、較嚴格的設定，通常會降低誤報，但也要注意可能增加漏判。實務上可依 Event List 的 conf / size 結果與現場誤報情況調整。"
+      },
+      { type: "spacer" },
+      {
         type: "text",
         title: "Size Filter",
-        content: "是依照目標物件在畫面中的大小過濾偵測結果，不是調整畫面大小，而是判斷偵測到的人或車尺寸是否符合想要的範圍。用途包含過濾太小的遠方物件、過濾小雜訊被誤判成人或車、過濾不合理大小的偵測結果，例如 People：1/80、Vehicle：1/80 可理解為用畫面比例作為大小門檻。"
+        content: "Size Filter 是依照目標物件在畫面中的大小來過濾 PVD 偵測結果。<br>它不是調整畫面大小，而是設定人或車的最小偵測尺寸門檻；當目標小於設定尺寸時，系統就不偵測。用途是排除太遠、太小的目標，或降低小雜訊、反光、線材、背景物體被誤判成人或車的機率。"
       },
+      { type: "image", num: 3, label: "Size Filter 設定畫面是意圖" },
+      {
+        type: "note",
+        title: "Size Filter 比例",
+        content: "官方文件提到 People / Vehicle Detection 的預設最小物件尺寸比例為畫面的 <code>1/80</code>。<br>例如 1920 × 1080 的影像中，1/80 約等於 24 × 24 pixels，可作為理解 Size Filter 的參考。"
+      },
+      { type: "spacer" },
       {
         type: "callout",
         label: "記憶點",
-        content: "Confidence 越高越嚴格，越不容易誤判但也可能漏判；Size Filter 是用物件大小過濾誤判。"
+        content: "Confidence 是「系統要多有把握才接受這個人 / 車判斷」；Size Filter 是「目標至少要多大才偵測」。Confidence 越高越嚴格，Size Filter 越大越容易排除遠方小目標。"
       }
     ]
   },

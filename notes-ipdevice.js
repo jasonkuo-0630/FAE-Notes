@@ -3,7 +3,7 @@
    category 欄位保留是因為 app.js 現在還是靠這個字串分組/顯示側邊欄，
    categoryId / subgroupId 是為了以後真的換成分類 ID 系統時先埋好，目前還沒有任何函式在讀它們。 */
 notes.push(
-{
+  {
     id: "vms-05",
     title: "IP Device Setup 總覽與加入方式比較",
     category: "IP Device Setup",
@@ -85,7 +85,7 @@ notes.push(
       }     
     ]
   },
-{
+  {
     id: "vms-06",
     title: "Add Camera：手動輸入加入",
     category: "IP Device Setup",
@@ -168,7 +168,7 @@ notes.push(
       }
     ]
   },
-{
+  {
     id: "vms-07",
     title: "Scan Camera：掃描網段加入",
     category: "IP Device Setup",

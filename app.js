@@ -11,7 +11,7 @@ const sidebarStructure = [
   { type: "supergroup", label: "GV-VMS", subgroups: [
       { label: "核心功能", items: ["VMS 總覽", "Live View", "Playback", "Backup", "事件與偵測"] },
       { label: "設定功能", items: ["IP Device Setup", "Camera Settings", "Record Setting", "System Configure"] },
-      { label: "通用功能", items: ["License"] },
+      { label: "通用功能", items: ["License", "POS 整合"] },
       { label: "排查與診斷", items: ["Troubleshooting"] }
     ]
   },
@@ -32,6 +32,7 @@ const categoryParent = {
   "IP Device Setup": ["GV-VMS", "設定功能"], "Camera Settings": ["GV-VMS", "設定功能"],
   "Record Setting": ["GV-VMS", "設定功能"], "System Configure": ["GV-VMS", "設定功能"],
   "License": ["GV-VMS", "通用功能"],
+  "POS 整合": ["GV-VMS", "通用功能"],
   "Troubleshooting": ["GV-VMS", "排查與診斷"]
 };
 
@@ -47,6 +48,7 @@ const categoryMeta = {
   "Record Setting":  { subtitle: "整體錄影設定、Camera 個別錄影方式、儲存位置與硬碟分配。" },
   "System Configure":{ subtitle: "GV-VMS 主機層級設定：啟動行為、視窗位置、事件通知、閒置保護與快捷鍵。" },
   "License":         { subtitle: "GV-USB Dongle 與 Software License 的差異、啟用方式與注意事項。" },
+  "POS 整合":         { subtitle: "GV-POS Text Sender、GV-Data Capture、GV-POS S/W Capture 的選用邏輯與設定原則。" },
   "Troubleshooting": { subtitle: "現場驗收與排查實務：環境前置準備、常見異常現象與排查邏輯。" }
 };
 

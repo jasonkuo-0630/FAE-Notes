@@ -95,7 +95,7 @@ notes.push(
     related: ["vms-02", "vms-32"],
 
     // 參考文獻：GV-VMS Quick Guide V20，Chapter 4 Live View，4.2 Functions on the Live View，4.2.1 Zoom Window / 4.2.2 Scan Window / 4.2.3 Popup Window，p.17-19；
-    // GV-VMS User's Manual V17，Chapter 1 Configuring Main System，1.10.1 Popping up Live View，p.52
+    // 參考文獻：GV-VMS User's Manual V17，Chapter 1 Configuring Main System，1.10.1 Popping up Live View，p.52
     sections: [
       {
         type: "text",
