@@ -78,7 +78,7 @@ notes.push(
       { type: "spacer" },
       {
         type: "text",
-        title: "Advanced Motion Detection Setup介面",
+        title: "Advanced Motion Detection Setup 介面",
       },
       { type: "image", num: 1, label: "Advanced Motion Detection Setup：Set Region 畫面" },
       {
@@ -188,7 +188,6 @@ notes.push(
     status: "ok",
     related: ["vms-28", "vms-04", "vms-25", "vms-35"],
 
-
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / Advanced Motion Detection Setup
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，Smart PVD Motion Search，p.30
     // 參考文獻：GV-VMS V20 產品頁，AI Query / Smart PVD Motion Search 功能說明
@@ -251,7 +250,7 @@ notes.push(
     categoryId: "gvvms",
     subgroupId: "events",
     tags: ["Confidence", "Size Filter"],
-    updated: "2026-07-16",
+    updated: "2026-07-22",
     status: "ok",
     related: ["vms-27", "vms-29"],
 
@@ -318,34 +317,78 @@ notes.push(
     categoryId: "gvvms",
     subgroupId: "events",
     tags: ["ROI", "Mask", "Show Rect"],
-    updated: "2026-07-16",
+    updated: "2026-07-22",
     status: "ok",
     related: ["vms-25", "vms-28"],
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / PVD Setting
+    // 參考文獻：GV-VMS User's Manual V20，PVD Event List / AI Query，type、confidence、size 顯示與 PVD 設定調整
     sections: [
       {
         type: "text",
-        content: "PVD 裡也有自己的 ROI／Mask 設定，這和一般 Motion Detection 的 Set Region／Mask Region 是不同的設定，需要分開設。"
+        content: "PVD 裡也有自己的 ROI / Mask 設定，這和一般 Motion Detection 的 Region Sensitivity / Mask Region 是不同設定，需要分開理解。<br>Motion Detection 是針對畫面變動做區域設定；PVD 則是針對人 / 車偵測做區域設定。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "PVD Setting：ROI / Mask 設定",
+        content: "<strong>ROI</strong>（Region of Interest）是指定 PVD 主要偵測區域，例如只偵測門口、走道、停車格或出入口。<br><strong>Mask</strong> 則是排除區域，指定某些位置不要做 PVD 偵測，例如排除電風扇、人形立牌、反光區、線材晃動、固定容易誤判的區域。"
       },
       { type: "image", num: 1, label: "PVD Setting：ROI / Mask 下拉選單" },
       {
-        type: "text",
-        content: "<strong>ROI</strong>（Region of Interest）是只在指定區域內做 PVD 偵測，例如只偵測門口、走道、停車格、出入口。<strong>Mask</strong> 是排除區域，指定區域不要做 PVD 偵測，例如排除電風扇、人形立牌、反光區、固定容易誤判的區域。"
+        type: "note",
+        title: "實務理解",
+        content: "ROI 可以理解成「PVD 主要看哪裡」，Mask 則是「PVD 不要看哪裡」。<br>若只想針對特定區域偵測人車，可用 ROI 縮小偵測範圍；若只有某些固定位置容易誤判，則可用 Mask 排除。"
       },
       {
         type: "callout",
         label: "記憶點",
-        content: "ROI 是 PVD 的加法「我只想看這裡」，Mask 是 PVD 的減法「這裡不要看」。"
+        content: "ROI 是 PVD 的加法：「我主要看這裡」；Mask 是 PVD 的減法：「這裡不要看」。"
       },
+      { type: "spacer" },
       {
         type: "text",
         title: "Show Rect",
-        content: "是顯示偵測框，當 PVD 偵測到人或車時，系統會用框框標出目標位置，方便確認 PVD 是否有正確抓到目標。要注意 Show Rect 不一定代表框框會被寫進錄影檔本體，可能只是 Live View、Event Preview 或設定畫面上的輔助顯示，是否會保留在 Playback 畫面中需依實際設定與播放結果確認。"
+        content: "Show Rect 是顯示偵測框。<br>當 PVD 偵測到人或車時，系統會用框框標示目標位置，方便確認 PVD 是否有正確抓到目標。"
       },
+      { type: "image", num: 2, label: "Show Rect 在 Live View 上的表現" },
+      {
+        type: "note",
+        title: "Show Rect 注意事項",
+        content: "Show Rect 主要是輔助確認偵測結果，不一定代表偵測框會被寫進錄影檔本體。<br>實務上需依 Live View、Playback、匯出設定與實際播放結果確認是否會顯示或保留偵測框。若匯出影片需要顯示偵測框，通常要另外確認 Playback / Save as AVI 的相關顯示或匯出設定。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "與 Event List 的關係",
+        content: "PVD Event 會在 Event List / AI Query 顯示偵測類型、confidence 與 size 資訊。<br>這些資訊不是設定值本身，而是該次事件的偵測結果，可用來回頭調整 Confidence、Size Filter、ROI 或 Mask。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "誤判出現在固定區域 → 優先檢查 Mask",
+          "只想偵測特定範圍 → 優先檢查 ROI",
+          "目標太小仍一直觸發 → 檢查 Size Filter",
+          "不像人 / 車卻一直被判定 → 檢查 Confidence",
+          "不知道有沒有抓對目標 → 開啟 Show Rect 觀察偵測框"
+        ]
+      },
+      { type: "spacer" },
       {
         type: "text",
         title: "實務建議",
-        content: "如果案場同時會用 Motion Detection 與 PVD Detection，建議兩邊都設定好偵測／排除區域（Motion 設 Set Region／Mask Region，PVD 設 ROI／Mask），可以同時降低一般 Motion 誤判、PVD 誤判、Event List 多餘事件、Popup 被不必要事件觸發、Playback 出現過多無意義事件。Record 決定錄影聽誰的，但其他功能可能還是會看 Motion 或 PVD，所以兩邊都設好最乾淨。"
+        content: "如果案場同時會用到一般 Motion Detection 與 PVD Detection，兩邊的區域設定要分開檢查。<br>一般 Motion 的 Region Sensitivity / Mask Region 影響畫面變動偵測；PVD 的 ROI / Mask 則影響人車偵測。<br><br>若錄影或事件觸發來源選 PVD Motion，重點會落在 PVD 設定；若其他功能仍使用一般 Motion，則 Motion Detection 的區域與靈敏度也要另外調整。不要以為設定了 Motion Mask，PVD 就一定跟著排除；也不要以為設定了 PVD Mask，一般 Motion 就不會再觸發。"
+      },
+      {
+        type: "note",
+        title: "驗收 QA / 實務補充",
+        content: "遇到 PVD 誤判時，可以先看 Event List 的 conf / size，再回頭調整 Confidence、Size Filter、ROI 與 Mask。<br>若誤判位置固定，通常優先用 Mask 排除；若只需要偵測門口、走道或停車格，則可用 ROI 限縮偵測範圍。"
+      },
+      {
+        type: "callout",
+        label: "記憶點",
+        content: "Motion 的區域設定管一般畫面變動；PVD 的 ROI / Mask 管人車偵測。<br>Show Rect 是用來看 PVD 有沒有框到正確目標，Event List 的 conf / size 則可拿來回頭調整 PVD 參數。"
       }
     ]
-  }
+  },
 );

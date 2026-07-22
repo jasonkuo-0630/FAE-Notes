@@ -8,7 +8,7 @@ notes.push(
     subgroupId: "pos",
     tags: ["POS", "Text Sender", "Data Capture", "POS Software Capture"],
     updated: "2026-07-21",
-    status: "draft",
+    status: "ok",
     related: [],
 
     // 參考文獻：GV-POS Text Sender 產品頁 / Datasheet，retrieve transaction data from POS device under the same LAN
@@ -109,7 +109,7 @@ notes.push(
     subgroupId: "pos",
     tags: ["POS", "Text Sender", "File Source", "TCP/IP"],
     updated: "2026-07-22",
-    status: "draft",
+    status: "ok",
     related: ["vms-pos-01"],
 
     // 參考文獻：GV-POS Text Sender 產品頁，retrieve transaction data from POS device under the same LAN / file sharing / superimposed on live view and recordings
@@ -245,6 +245,157 @@ notes.push(
         type: "callout",
         label: "記憶點",
         content: "Text Sender 的核心是「監控文字檔 → 檔案更新後讀取資料 → 透過 TCP/IP 送進 VMS → 疊加到 Mapping Camera」。Text Sender 端與 VMS 端的 POS Index、Port、Password 與 Filter Setting 要對得起來。"
+      }
+    ]
+  },
+{
+    id: "vms-pos-03",
+    title: "Data Capture 加入方式",
+    category: "POS 整合",
+    categoryId: "gvvms",
+    subgroupId: "pos",
+    tags: ["POS", "Data Capture", "TCP/IP"],
+    updated: "2026-07-22",
+    status: "draft",
+    related: ["vms-pos-01"],
+
+    sections: []
+  },
+{
+    id: "vms-pos-04",
+    title: "POS S/W Capture 加入方式",
+    category: "POS 整合",
+    categoryId: "gvvms",
+    subgroupId: "pos",
+    tags: ["POS", "POS S/W Capture", "TCP/IP"],
+    updated: "2026-07-22",
+    status: "draft",
+    related: ["vms-pos-01"],
+
+    sections: []
+  },
+{
+    id: "vms-pos-05",
+    title: "POS 顯示與查詢：Live View 與 POS Log",
+    category: "POS 整合",
+    categoryId: "gvvms",
+    subgroupId: "pos",
+    tags: ["POS", "Live View", "POS Log", "POS Search"],
+    updated: "2026-07-22",
+    status: "draft",
+    related: ["vms-pos-01", "vms-pos-02", "vms-pos-03", "vms-pos-04"],
+
+    // 參考文獻：GV-VMS User's Manual V20，Chapter 10 Point-Of-Sale (POS) Application
+    // 10.1 Displaying Transactions on the Screen
+    // 10.2 Setting Up Text Overlay
+    // 10.7 Displaying Receipt Details of a Transaction
+    // 10.8 Filtering Transactions by a Keyword
+    // 10.9 Searching for POS Events / 10.9.1 Advanced Search Panel
+    sections: [
+      {
+        type: "text",
+        content: "POS 整合完成後，GV-VMS 可以把 POS 交易資料顯示在 Live View，也可以把交易紀錄寫入 POS Log，方便事後查詢交易內容並對應錄影畫面。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "兩種 POS Live View 顯示方式",
+        content: "POS 在 Live View 上大致可分成兩種顯示方式：一種是把 POS 文字疊加在指定 Camera 畫面上；另一種是把 POS Device 直接拖到 Layout 分割畫面，讓該格只顯示 POS 交易文字。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "疊加在 Camera 畫面上",
+      },
+      { type: "image", num: 1, label: "POS 資訊疊加在 Camera 畫面上的示意圖" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "疊加在 Camera 畫面上",
+      },
+      { type: "image", num: 2, label: "POS Device 獨立顯示" },
+      { type: "spacer" },
+      {
+        type: "list",
+        title: "Live View 顯示方式",
+        items: [
+          "<strong>疊加在 Camera 畫面上</strong>：透過 POS Device Setup 的 <strong>Mapping Camera</strong> 指定 POS 文字要顯示在哪一支 Camera 上，再到 <strong>Text Setup</strong> 設定 Print on screen / Print on video file、文字位置與字型。<br>這種方式適合把交易文字直接對應到櫃台 Camera 畫面。",
+          "<strong>POS Device 獨立顯示</strong>：POS Device 建立後會出現在 Content List，可直接拖曳到 Live View Layout 的任一分割畫面。此時該格可以不顯示 Camera，只顯示 POS 交易資料。<br>這種方式適合單純監看交易文字，或用來測試 VMS 是否有收到 POS 資料。"
+        ]
+      },
+      {
+        type: "note",
+        title: "Text Setup 補充",
+        content: "<strong>Print on screen</strong> 控制 POS 文字是否顯示在 Live View；<strong>Print on video file</strong> 控制 POS 文字是否寫進錄影檔。若 VMS 有收到 POS 資料但 Camera 畫面沒有疊字，需檢查 Mapping Camera 與 Text Setup。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "三種 POS Log / 交易紀錄查詢方式",
+        content: "POS 資料進到 GV-VMS 後，常見查詢方式可分成三種：System Log 的 POS Table、ViewLog 的 Advanced System Log，以及 ViewLog 的 POS Search。三者差異在於查詢目的不同。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "POS Table(Live View)",
+      },
+      { type: "image", num: 3, label: "POS Table 畫面" },
+      {
+        type: "list",
+        title: "1. System Log → POS Table",
+        items: [
+          "路徑：<strong>Home → Toolbar → Tools → System Log → POS Table</strong>。",
+          "用途：快速查看 POS 交易紀錄、交易事件與 Filter 結果。",
+          "適合情境：確認 POS 資料有沒有進 VMS、查看某段時間有哪些 POS 交易、確認 Keyword / Event Filter 是否有成功寫入事件。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "Advanced System Log(ViewLog)",
+      },
+      { type: "image", num: 4, label: "Advanced System Log 畫面" },
+      {
+        type: "list",
+        title: "2. ViewLog → Advanced System Log",
+        items: [
+          "路徑：<strong>ViewLog → Toolbar → Tools → Advanced System Log</strong>。",
+          "用途：依時間範圍撈取 POS data，選擇 POS device 後查看該段時間的交易清單與收據內容。",
+          "適合情境：想查某段時間完整 POS 交易內容，或點選某筆交易後查看對應 receipt / receipt details。"
+        ]
+      },
+      {
+        type: "list",
+        title: "3. ViewLog → POS Search",
+        items: [
+          "路徑：<strong>ViewLog → Toolbar → Tools → POS Search</strong>。",
+          "用途：搜尋 POS Event，並直接播放對應錄影畫面。",
+          "適合情境：想用關鍵字、POS Event 類型、時間範圍或指定 POS Device 搜尋交易，並立刻回放該筆交易對應的影像。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "三種查詢方式差異",
+        content: "System Log → POS Table 偏向看紀錄；Advanced System Log 偏向查交易明細與收據內容；POS Search 則偏向「用 POS 條件找影片」，可搜尋後直接回放 POS event 對應錄影。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "只想確認 POS 資料有沒有進來 → 看 System Log / POS Table",
+          "想看某段時間的交易清單與收據明細 → 用 Advanced System Log",
+          "想用交易資料反查錄影畫面 → 用 POS Search"
+        ]
+      },
+      {
+        type: "note",
+        title: "實務補充",
+        content: "測試 POS 整合時，可以先把 POS Device 直接拖到 Layout 分割畫面。若這裡有顯示交易文字，代表 VMS 有收到 POS 資料；如果 Camera 上沒有疊字，再回頭檢查 Mapping Camera、Text Setup 的 Print on screen，以及該 Camera 是否有放在 Live View。"
+      },
+      {
+        type: "callout",
+        label: "記憶點",
+        content: "POS Live View 有兩種：疊在 Camera 上、或獨立拖 POS Device 到 Layout。POS Log 查詢有三種：POS Table 看紀錄、Advanced System Log 看交易明細、POS Search 用交易條件找回放影片。"
       }
     ]
   }
