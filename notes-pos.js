@@ -31,7 +31,7 @@ notes.push(
         items: [
           "<strong>POS 會不會輸出文字檔？</strong>會的話用 <strong>GV-POS Text Sender</strong>。POS 自己會產生 TXT / INI / JNL 或 raw text files 這類文字紀錄，可以想成 POS 已經把小抄寫好了，Text Sender 只是去把小抄讀出來、送給 VMS。",
           "<strong>POS 能不能安裝軟體？</strong>如果 POS 是 Windows 電腦、可以裝軟體，但交易資料不是乾淨的文字檔，而是比較像列印畫面的圖形化資料（Graphic Mode / EMF）或其他 raw unprocessed data，就可用 <strong>GV-POS S/W Capture</strong>。它是軟體直接安裝在 POS 電腦裡，擷取 POS 正在產生的交易 / 列印資料。",
-          "<strong>POS 只能接印表機、不能裝軟體、也沒有檔案？</strong>那就用 <strong>GV-Data Capture</strong>。它是硬體，接在 POS 跟收據印表機 / 發票機中間，把 POS 原本要送去印表機列印的內容，複製一份送給 VMS。"
+          "<strong>POS 不能裝軟體、沒有文字檔，但可以從印表機線路或明碼文字輸出取得資料？</strong>那就用 <strong>GV-Data Capture</strong>。它是硬體，接在 POS 跟收據印表機 / 發票機中間，把 POS 原本要送去印表機列印的內容，複製一份送給 VMS。"
         ]
       },
       { type: "spacer" },
@@ -265,7 +265,7 @@ notes.push(
     sections: [
       {
         type: "text",
-        content: "GV-Data Capture 是硬體整合方式，正式環境通常接在 POS / Cash Register 與收據印表機之間，擷取 POS 原本要送給印表機的交易文字資料，再送進 GV-VMS。<br><br>公司測試時若手上沒有實體 Data Capture 硬體，可使用 POSRegister_E.exe 搭配兩個互通的 COM Port 模擬 POS 交易資料輸入。"
+        content: "GV-Data Capture 是硬體整合方式，正式環境通常接在 POS / Cash Register 與收據印表機之間；也可用於 ATM、收費系統或其他可輸出 Big5 / ASCII 明碼的 text-based device。<br>擷取 POS 原本要送給印表機的交易文字資料，再送進 GV-VMS。<br><br>公司測試時若手上沒有實體 Data Capture 硬體，可使用 POSRegister_E.exe 搭配兩個互通的 COM Port 模擬 POS 交易資料輸入。"
       },
       { type: "spacer" },
       {
@@ -425,13 +425,13 @@ notes.push(
     sections: [
       {
         type: "text",
-        content: "GV-POS S/W Capture 是軟體方式的 POS 整合工具，主要用於 Windows-based POS。當 POS 交易資料不是單純文字檔，而是 Graphic Mode、EMF files 或其他 raw unprocessed data 時，可在 POS 電腦上安裝 GV-POS S/W Capture，將交易資料送到 GV-VMS，並疊加在 Live View 與錄影畫面上。"
+        content: "GV-POS S/W Capture 是軟體方式的 POS 整合工具，主要用於 Windows-based POS。<br>當 POS 交易資料不是單純文字檔，而是 Graphic Mode、EMF files 或其他 raw unprocessed data 時，可在 POS 電腦上安裝 GV-POS S/W Capture，將交易資料送到 GV-VMS，並疊加在 Live View 與錄影畫面上。"
       },
       { type: "spacer" },
       {
         type: "text",
         title: "使用情境",
-        content: "POS S/W Capture 適合用在 POS 本身是 Windows 電腦、可以安裝 GeoVision 軟體，但無法直接產生乾淨 TXT / INI / JNL 交易文字檔的環境。它不是去讀現成文字檔，而是安裝在 POS 端，直接擷取 POS 產生的交易 / 列印資料。"
+        content: "POS S/W Capture 適合用在 Windows-based POS，而且 POS 端可以安裝 GV-POS S/W Capture 的環境。<br>重點不是把完整 GV-VMS 裝在 POS 電腦上，而是由 POS 端的 S/W Capture 擷取 Graphic Mode / EMF / raw unprocessed data，再傳送到另一端的 GV-VMS / NVR 接收。"
       },
       {
         type: "list",
@@ -448,7 +448,7 @@ notes.push(
       {
         type: "text",
         title: "與 Text Sender 的差異",
-        content: "Text Sender 是讀取 POS 已經產生好的文字檔；POS S/W Capture 則是安裝在 POS 電腦上，直接擷取 POS 的交易資料或列印資料。若 POS 能產生乾淨文字檔，通常先考慮 Text Sender；若 POS 是 Windows 系統且資料偏 Graphic Mode / EMF，則考慮 POS S/W Capture。"
+        content: "Text Sender 是讀取 POS 已經產生好的文字檔；POS S/W Capture 則是安裝在 POS 電腦上，直接擷取 POS 的交易資料或列印資料。<br>若 POS 能產生乾淨文字檔，通常先考慮 Text Sender；若 POS 是 Windows 系統且資料偏 Graphic Mode / EMF，則考慮 POS S/W Capture。"
       },
       {
         type: "flow",
@@ -477,6 +477,7 @@ notes.push(
         title: "POS S/W Capture 端設定概念",
         content: "依官方 Graphic POS Integration 文件，執行 GV-POS S/W Capture 後，需要選擇傳輸方式。若使用 RS-232，選擇 Serial Port 並指定 COM Port；若使用網路連線，選擇 TCP/IP Port 並設定對應 Port。實際欄位名稱與流程需依軟體版本確認。"
       },
+      { type: "image", num: 1, label: "POS S/W Capture 端設定介面(官方公開文件截圖 並非實機操作)" },
       {
         type: "list",
         title: "S/W Capture 端常見設定",
@@ -492,14 +493,15 @@ notes.push(
       {
         type: "text",
         title: "GV-VMS 端設定概念",
-        content: "回到 GV-VMS，從 <strong>Accessories → POS Device Setup</strong> 新增 POS Device。VMS 端的 Printer Type 需與 POS S/W Capture 的傳輸方式一致；如果 S/W Capture 端使用 TCP/IP，VMS 端就選 TCP/IP Port；如果使用 RS-232，VMS 端就選 Com Port。"
+        content: "回到 GV-VMS，從 <strong>Accessories → POS Device Setup</strong> 新增 POS Device。<br>VMS 端的 Printer Type 需與 POS S/W Capture 的傳輸方式一致；如果 S/W Capture 端使用 TCP/IP，VMS 端就選 TCP/IP Port；如果使用 RS-232，VMS 端就選 Com Port。"
       },
+      { type: "image", num: 2, label: "GV-VMS 端設定介面" },
       {
         type: "list",
         title: "VMS POS Device Setup 主要設定",
         items: [
           "<strong>Printer Type</strong>：依 S/W Capture 傳輸方式選擇 TCP/IP Port 或 Com Port。",
-          "<strong>IP Address or Domain Name</strong>：TCP/IP 模式下，填入 POS S/W Capture 所在電腦的 IP；若同機測試可視情況使用 127.0.0.1。",
+          "<strong>IP Address or Domain Name</strong>：TCP/IP 模式下，填入 POS S/W Capture 所在電腦的 IP；正式環境 POS 與 GV-VMS 通常分開；只有同機測試時才可能視情況使用 127.0.0.1。",
           "<strong>Device Port</strong>：需與 POS S/W Capture 端設定的 Port 一致。",
           "<strong>Password</strong>：需與 POS S/W Capture 端一致。",
           "<strong>COM Port / Baud Rate / Data Bits / Parity / Stop Bits</strong>：RS-232 模式下需與 S/W Capture 端串列設定一致。",
