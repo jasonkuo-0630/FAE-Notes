@@ -18,7 +18,7 @@ import os
 import re
 import shutil
 
-DRY_RUN = True   # 先預覽，確認沒問題後改成 False 才會真的搬移
+DRY_RUN = False   # 先預覽，確認沒問題後改成 False 才會真的搬移
 IMAGES_DIR = "images"
 
 # 舊 id -> {new_id, categoryId, subgroupId}
