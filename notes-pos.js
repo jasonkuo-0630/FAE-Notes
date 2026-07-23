@@ -311,7 +311,7 @@ notes.push(
       { type: "spacer" },
       {
         type: "text",
-        title: "疊加在 Camera 畫面上",
+        title: "POS Device 獨立顯示",
       },
       { type: "image", num: 2, label: "POS Device 獨立顯示" },
       { type: "spacer" },
@@ -364,14 +364,48 @@ notes.push(
           "適合情境：想查某段時間完整 POS 交易內容，或點選某筆交易後查看對應 receipt / receipt details。"
         ]
       },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "POS Search(ViewLog)",
+      },
+      { type: "image", num: 5, label: "POS Search 畫面" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "POS Search Advanced Search(ViewLog)",
+      },
+      { type: "image", num: 6, label: "POS Search Advanced Search 畫面" },
       {
         type: "list",
         title: "3. ViewLog → POS Search",
         items: [
           "路徑：<strong>ViewLog → Toolbar → Tools → POS Search</strong>。",
-          "用途：搜尋 POS Event，並直接播放對應錄影畫面。",
-          "適合情境：想用關鍵字、POS Event 類型、時間範圍或指定 POS Device 搜尋交易，並立刻回放該筆交易對應的影像。"
+          "用途：用 POS 條件搜尋交易事件，並直接對應到錄影回放畫面。",
+          "適合情境：想用交易時間、POS Device、POS Event 類型或交易品項關鍵字反查錄影，例如查某段時間內是否有特定商品、取消交易、現金付款等紀錄。"
         ]
+      },
+      {
+        type: "list",
+        title: "POS Search 操作重點",
+        items: [
+          "<strong>POS Device</strong>：選擇要查詢哪一個 POS 裝置，例如 POS 1。",
+          "<strong>POS Event</strong>：可依 POS 事件類型篩選，例如 Transaction Start、Transaction End 或其他已設定的 POS Event。",
+          "<strong>Find Text</strong>：可輸入交易文字或品項關鍵字，例如商品名稱、付款方式、金額片段等，用來查找包含該文字的交易紀錄。",
+          "<strong>時間條件</strong>：可用指定日期與時間進行搜尋；若使用 Advanced Search，則可設定 Start / End Date、Start / End Time，查詢一整段時間內的 POS 交易。",
+          "<strong>搜尋結果列表</strong>：下方會列出符合條件的 POS 交易資料，包含時間、交易內容、事件、POS Device 等資訊。",
+          "<strong>雙擊交易結果</strong>：雙擊搜尋結果中的某一筆 POS 交易，可跳到該交易時間點並顯示對應 Camera 的回放影像。前提是該時間點有錄影資料，且 POS Device 有正確 Mapping 到 Camera。"
+        ]
+      },
+      {
+        type: "note",
+        title: "POS Search：放大鏡與 Advanced Search 差異",
+        content: "POS Search 內的放大鏡 / Find Condition 比較像快速查找功能，會從指定日期時間開始，往前或往後找最近且符合條件的一筆 POS Event。實務上若交易時間不夠精確，可能不容易直接找到目標事件。<br><br>Advanced Search 則比較適合正式查詢，可設定 Start / End Date、Start / End Time，直接搜尋一段時間內的 POS 交易，也能篩選 POS Device、POS Event，或用 Find Text 輸入交易品項關鍵字。"
+      },
+      {
+        type: "note",
+        title: "回放影像提醒",
+        content: "POS Search 找到的是 POS 交易紀錄，但是否能直接看到對應 Camera 影像，取決於該時間點是否有錄影資料。若雙擊交易結果後沒有畫面，需檢查 Mapping Camera 是否正確、該 Camera 當時是否有錄影，以及錄影檔是否仍存在。"
       },
       { type: "spacer" },
       {
@@ -384,7 +418,9 @@ notes.push(
         steps: [
           "只想確認 POS 資料有沒有進來 → 看 System Log / POS Table",
           "想看某段時間的交易清單與收據明細 → 用 Advanced System Log",
-          "想用交易資料反查錄影畫面 → 用 POS Search"
+          "已知道明確交易時間、想快速跳到附近 POS Event → 用 POS Search 的 Find Condition",
+          "想查一整段時間內所有交易或篩選品項 → 用 POS Search 的 Advanced Search",
+          "想從交易紀錄反查影像 → 在 POS Search 結果列表雙擊該筆交易"
         ]
       },
       {
