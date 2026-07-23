@@ -250,29 +250,316 @@ notes.push(
   },
 {
     id: "vms-pos-03",
-    title: "Data Capture 加入方式",
+    title: "Data Capture 加入方式：COM 模擬測試",
     category: "POS 整合",
     categoryId: "gvvms",
     subgroupId: "pos",
-    tags: ["POS", "Data Capture", "TCP/IP"],
-    updated: "2026-07-22",
+    tags: ["POS", "Data Capture", "COM Port", "POSRegister"],
+    updated: "2026-07-23",
     status: "draft",
-    related: ["vms-pos-01"],
+    related: ["vms-pos-01", "vms-pos-05"],
 
-    sections: []
+    // 參考文獻：GV-Data Capture V3.1 產品頁，through wiring or network 整合 POS / ATM / Cash Register 交易資料
+    // 參考文獻：GV-Data Capture User Manual，POS Device Setup / Mapping Camera / Baud Rate、Data Bits、Parity、Stop Bits
+    // 實務補充：以下流程為公司測試環境使用 POSRegister_E.exe 與兩個互通 COM Port 模擬 Data Capture 資料輸入
+    sections: [
+      {
+        type: "text",
+        content: "GV-Data Capture 是硬體整合方式，正式環境通常接在 POS / Cash Register 與收據印表機之間，擷取 POS 原本要送給印表機的交易文字資料，再送進 GV-VMS。<br><br>公司測試時若手上沒有實體 Data Capture 硬體，可使用 POSRegister_E.exe 搭配兩個互通的 COM Port 模擬 POS 交易資料輸入。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "模擬測試概念",
+        content: "這個測試不是直接測真正的 Data Capture 硬體，而是模擬「POS 交易資料透過 COM Port 傳進 GV-VMS」的流程。POSRegister_E.exe 扮演 POS / 收銀機，負責送出交易資料；GV-VMS 的 POS Device Setup 則負責從另一個 COM Port 接收資料，並把 POS 文字顯示到指定 Camera。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "POSRegister_E.exe 模擬 POS / 收銀機",
+          "POSRegister_E.exe 從 COM 6 送出交易文字",
+          "COM 6 與 COM 7 透過 USB-to-COM / Serial 線路互通",
+          "GV-VMS POS Device Setup 從 COM 7 接收資料",
+          "GV-VMS 將 POS 文字顯示到 Mapping Camera"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "使用前準備",
+        content: "測試前需先安裝對應 Driver，讓 Windows 能正確辨識 USB-to-COM 裝置與 COM Port。接上兩個互通的 USB-to-COM 裝置後，到 Windows 裝置管理員確認產生的 COM Port 編號，例如 COM 6 與 COM 7。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "兩個互通的 USB-to-COM 裝置"
+      },
+      { type: "image", num: 1, label: "測試用兩個互通的 USB-to-COM 裝置示意圖" },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "確認 Windows 裝置管理員"
+      },
+      { type: "image", num: 2, label: "確認 Windows 裝置管理員中 USB-to-COM 裝置的 COM Port" },
+      { type: "spacer" },
+      {
+        type: "note",
+        title: "實務補充：模擬器無法正常使用",
+        content: "若 POSRegister_E.exe 一開啟就崩潰，需先確認是否已安裝 GV-Driver / USB-to-COM Driver。<br>實測時因未安裝 GV-Driver，系統可能無法正確讀取 USB / COM 裝置，導致模擬器無法正常使用；安裝 Driver 後模擬器恢復正常。具體原因仍需依現場環境確認。"
+      },
+      {
+        type: "note",
+        title: "COM Port 配對提醒",
+        content: "POSRegister_E.exe 與 GV-VMS 端不能使用同一個 COM Port。<br>測試時通常是一端送資料、一端收資料，例如 POSRegister_E.exe 設 COM 6，GV-VMS POS Device Setup 設 COM 7。兩邊中間的線路需能互通，否則 VMS 端收不到資料。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "POSRegister_E.exe 端設定",
+        content: "開啟 POSRegister_E.exe 後，進入 COM Port Setup，選擇其中一個 COM Port 作為 POS 模擬器的輸出端，例如 COM 6。Baud Rate、Data Bit、Stop Bit、Parity 等參數要記錄下來，之後 VMS 端需設定一致。"
+      },
+      { type: "image", num: 3, label: "POSRegister_E.exe 中的設定介面" },
+      {
+        type: "list",
+        title: "POSRegister_E.exe 常用設定",
+        items: [
+          "<strong>COM Port</strong>：選擇其中一個 COM Port，例如 COM 6。",
+          "<strong>Baud Rate</strong>：例如 9600。",
+          "<strong>Data Bit</strong>：例如 8。",
+          "<strong>Stop Bit</strong>：例如 1。",
+          "<strong>Parity</strong>：例如 None。"
+        ]
+      },
+      {
+        type: "note",
+        title: "實務理解",
+        content: "POSRegister_E.exe 可以理解成測試用的 POS 收銀機。點選商品、Cash 或結帳後，它會依設定的 COM Port 與通訊參數送出交易文字。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "GV-VMS 端設定位置",
+        content: "回到 GV-VMS，從右上角選單進入 <strong>Accessories → POS Device Setup</strong>，新增一個 POS Device。<br>這裡負責設定 VMS 要從哪個 COM Port 接收 POS 資料，以及 POS 文字要顯示在哪一支 Camera 上。"
+      },
+      { type: "image", num: 4, label: "POS Device Setup 設定介面" },
+      {
+        type: "list",
+        title: "VMS POS Device Setup 主要設定",
+        items: [
+          "<strong>Printer Type：Com Port</strong>：Data Capture / Serial 模擬測試時選擇 Com Port。",
+          "<strong>Device</strong>：設定 POS 編號與名稱，例如 Device 1 / POS 1。",
+          "<strong>Mapping Camera</strong>：指定 POS 文字要疊加到哪一支 Camera 畫面上。",
+          "<strong>Filter Setting</strong>：依測試資料格式選擇對應 Filter。若為一般文字格式測試，可使用 General；實際案場需依 POS / 印表機格式確認。",
+          "<strong>COM Port</strong>：選擇與 POSRegister_E.exe 相對的另一個 COM Port，例如 POSRegister_E.exe 用 COM 6，VMS 端就選 COM 7。",
+          "<strong>Baud Rate / Data Bits / Parity / Stop Bits</strong>：需與 POSRegister_E.exe 端設定一致，例如 9600 / 8 / None / 1。",
+          "<strong>Text Setup</strong>：若希望 POS 文字顯示在 Camera Live View 上，需進入 Text Setup 檢查顯示設定，例如是否啟用 Print on screen、文字位置、字型大小與顏色。<br>若希望 POS 文字寫進錄影檔，則需確認 Print on video file 相關設定。"
+        ]
+      },
+      {
+        type: "note",
+        title: "設定原則",
+        content: "Data Capture / COM Port 類型的 POS 整合，最重要的是通訊參數一致。可以想成 POSRegister_E.exe 用什麼語速與格式講話，VMS 就要用同樣語速與格式接收；若 Baud Rate、Data Bits、Parity 或 Stop Bits 不一致，可能會出現亂碼或完全收不到資料。"
+      },
+      {
+        type: "note",
+        title: "Mapping Camera 與顯示提醒",
+        content: "Mapping Camera 只決定 POS 文字要對應哪一支 Camera。若 VMS 有收到 POS 資料但 Camera 畫面沒有顯示文字，需檢查 Mapping Camera 是否選對、Text Setup 是否啟用 Print on screen，以及該 Camera 是否正在 Live View。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "測試方式",
+        content: "設定完成後，回到 POSRegister_E.exe 點選商品名稱按鈕。<br>若 COM Port 與通訊參數正確，GV-VMS 應可接收到 POS 交易文字，並顯示在 Mapping Camera 的 Live View 上。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "安裝 GV-Driver / USB-to-COM Driver",
+          "接上兩個互通的 USB-to-COM 裝置",
+          "確認 Windows 產生兩個 COM Port，例如 COM 6 / COM 7",
+          "開啟 POSRegister_E.exe",
+          "POSRegister_E.exe 設定 COM 6、9600 / 8 / 1 / None",
+          "GV-VMS → Accessories → POS Device Setup",
+          "新增 POS Device，Printer Type 選 Com Port",
+          "VMS COM Port 選 COM 7",
+          "Baud Rate、Data Bits、Parity、Stop Bits 與 POSRegister_E.exe 保持一致",
+          "設定 Mapping Camera 與 Filter Setting",
+          "進入 Text Setup 確認 Print on screen",
+          "POSRegister_E.exe 點選商品",
+          "確認 Mapping Camera 畫面是否顯示 POS 文字"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "list",
+        title: "常見問題排查",
+        items: [
+          "<strong>POSRegister_E.exe 一開就崩潰</strong>：檢查 GV-Driver / USB-to-COM Driver 是否已安裝，Windows 是否正確辨識 COM Port。",
+          "<strong>VMS 完全收不到 POS 文字</strong>：檢查 POSRegister_E.exe 與 VMS 是否使用不同但互通的 COM Port，例如 COM 6 對 COM 7。",
+          "<strong>收到亂碼</strong>：檢查 Baud Rate、Data Bits、Parity、Stop Bits 是否一致。",
+          "<strong>POS Device 有資料但 Camera 沒顯示</strong>：檢查 Mapping Camera 是否選對，以及 Text Setup 是否啟用 Print on screen。",
+          "<strong>仍然收不到資料</strong>：可用 Serial Monitor / PuTTY / Tera Term 先測試接收端 COM Port 是否真的有收到 POSRegister_E.exe 送出的文字。"
+        ]
+      },
+      {
+        type: "callout",
+        label: "記憶點",
+        content: "Data Capture 模擬測試的核心是：POSRegister_E.exe 負責從一個 COM Port 送出交易資料，GV-VMS 從另一個 COM Port 接收資料。兩邊 COM Port 要互通，通訊參數要一致，Mapping Camera 與 Text Setup 要設對，POS 文字才會顯示在 Camera 畫面上。"
+      }
+    ]
   },
 {
     id: "vms-pos-04",
-    title: "POS S/W Capture 加入方式",
+    title: "POS S/W Capture 加入方式：Windows-based POS 整合",
     category: "POS 整合",
     categoryId: "gvvms",
     subgroupId: "pos",
-    tags: ["POS", "POS S/W Capture", "TCP/IP"],
-    updated: "2026-07-22",
+    tags: ["POS", "POS S/W Capture", "Graphic Mode", "TCP/IP", "RS-232"],
+    updated: "2026-07-23",
     status: "draft",
-    related: ["vms-pos-01"],
+    related: ["vms-pos-01", "vms-pos-05"],
 
-    sections: []
+    // 參考文獻：GV-POS S/W Capture 產品頁，Windows-based POS、EMF files / raw unprocessed data、RS-232 / TCP/IP
+    // 參考文獻：Graphic POS Integration，GV-POS S/W Capture 可選 Serial Port 或 TCP/IP Port
+    // 說明：本篇依官方資料與同事說明整理，尚未經公司環境實機操作驗證
+    sections: [
+      {
+        type: "text",
+        content: "GV-POS S/W Capture 是軟體方式的 POS 整合工具，主要用於 Windows-based POS。當 POS 交易資料不是單純文字檔，而是 Graphic Mode、EMF files 或其他 raw unprocessed data 時，可在 POS 電腦上安裝 GV-POS S/W Capture，將交易資料送到 GV-VMS，並疊加在 Live View 與錄影畫面上。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "使用情境",
+        content: "POS S/W Capture 適合用在 POS 本身是 Windows 電腦、可以安裝 GeoVision 軟體，但無法直接產生乾淨 TXT / INI / JNL 交易文字檔的環境。它不是去讀現成文字檔，而是安裝在 POS 端，直接擷取 POS 產生的交易 / 列印資料。"
+      },
+      {
+        type: "list",
+        title: "適合使用 POS S/W Capture 的情境",
+        items: [
+          "POS 是 <strong>Windows-based POS</strong>。",
+          "POS 可以安裝額外軟體。",
+          "POS 交易資料屬於 <strong>Graphic Mode / EMF / raw unprocessed data</strong>。",
+          "POS 無法用 Text Sender 方式提供 TXT / INI / JNL 文字檔。",
+          "需要將 POS 交易資料傳送到 GV-VMS，並疊加到 Camera Live View 或錄影畫面。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "與 Text Sender 的差異",
+        content: "Text Sender 是讀取 POS 已經產生好的文字檔；POS S/W Capture 則是安裝在 POS 電腦上，直接擷取 POS 的交易資料或列印資料。若 POS 能產生乾淨文字檔，通常先考慮 Text Sender；若 POS 是 Windows 系統且資料偏 Graphic Mode / EMF，則考慮 POS S/W Capture。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "Text Sender：POS 先產生文字檔 → Text Sender 讀檔 → 送到 VMS",
+          "POS S/W Capture：軟體裝在 POS 端 → 擷取交易 / 列印資料 → 送到 VMS"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "官方整合架構",
+        content: "官方資料說明，GV-POS S/W Capture 可將 Windows-based POS 的交易資料透過 RS-232 serial cable 或 TCP/IP connection 傳送到 GV-NVR / GV-VMS。也就是說，POS S/W Capture 端負責擷取資料，GV-VMS 端則透過 POS Device Setup 建立對應的 POS Device 來接收資料。"
+      },
+      {
+        type: "list",
+        title: "連線方式",
+        items: [
+          "<strong>RS-232 / Serial Port</strong>：使用實體串列線路傳送 POS 交易資料。VMS 端需設定對應 COM Port 與通訊參數。",
+          "<strong>TCP/IP Port</strong>：使用網路連線傳送 POS 交易資料。VMS 端需設定 POS S/W Capture 所在電腦的 IP、Port 與 Password。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "POS S/W Capture 端設定概念",
+        content: "依官方 Graphic POS Integration 文件，執行 GV-POS S/W Capture 後，需要選擇傳輸方式。若使用 RS-232，選擇 Serial Port 並指定 COM Port；若使用網路連線，選擇 TCP/IP Port 並設定對應 Port。實際欄位名稱與流程需依軟體版本確認。"
+      },
+      {
+        type: "list",
+        title: "S/W Capture 端常見設定",
+        items: [
+          "<strong>Connection Type / Port Type</strong>：選擇 Serial Port 或 TCP/IP Port。",
+          "<strong>Serial Port</strong>：若走 RS-232，選擇 POS 端使用的 COM Port。",
+          "<strong>TCP/IP Port</strong>：若走網路，設定用來與 GV-VMS 連線的 Port。",
+          "<strong>Password</strong>：若 TCP/IP 連線有設定密碼，需與 VMS 端一致。",
+          "<strong>Capture / Start</strong>：設定完成後啟動擷取，讓 S/W Capture 開始將 POS 交易資料送出。"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "GV-VMS 端設定概念",
+        content: "回到 GV-VMS，從 <strong>Accessories → POS Device Setup</strong> 新增 POS Device。VMS 端的 Printer Type 需與 POS S/W Capture 的傳輸方式一致；如果 S/W Capture 端使用 TCP/IP，VMS 端就選 TCP/IP Port；如果使用 RS-232，VMS 端就選 Com Port。"
+      },
+      {
+        type: "list",
+        title: "VMS POS Device Setup 主要設定",
+        items: [
+          "<strong>Printer Type</strong>：依 S/W Capture 傳輸方式選擇 TCP/IP Port 或 Com Port。",
+          "<strong>IP Address or Domain Name</strong>：TCP/IP 模式下，填入 POS S/W Capture 所在電腦的 IP；若同機測試可視情況使用 127.0.0.1。",
+          "<strong>Device Port</strong>：需與 POS S/W Capture 端設定的 Port 一致。",
+          "<strong>Password</strong>：需與 POS S/W Capture 端一致。",
+          "<strong>COM Port / Baud Rate / Data Bits / Parity / Stop Bits</strong>：RS-232 模式下需與 S/W Capture 端串列設定一致。",
+          "<strong>Mapping Camera</strong>：指定 POS 文字要疊加到哪一支 Camera 畫面上。",
+          "<strong>Filter Setting</strong>：依 POS / S/W Capture 輸出格式選擇對應 Filter，實際需依案場 POS 類型與公司建議確認。",
+          "<strong>Text Setup</strong>：設定 POS 文字是否顯示在 Live View、是否寫入錄影檔，以及文字位置、字體與顏色。"
+        ]
+      },
+      {
+        type: "note",
+        title: "授權提醒",
+        content: "GV-POS S/W Capture 屬於軟體整合方式，需搭配對應 GV-USB Dongle / POS Port 授權。若 VMS 端沒有授權，設定或接收 POS S/W Capture 資料時可能會出現授權警告。"
+      },
+      { type: "spacer" },
+      {
+        type: "text",
+        title: "測試與確認方式",
+        content: "設定完成後，可在 POS 端產生一筆交易，確認 GV-VMS 是否收到 POS 文字。若 VMS 有收到資料，應可在 Mapping Camera 的 Live View 上看到 POS 文字，或將 POS Device 直接拖到 Layout 分割畫面獨立顯示交易文字。"
+      },
+      {
+        type: "flow",
+        steps: [
+          "確認 POS 是 Windows-based POS",
+          "確認 POS 可安裝 GV-POS S/W Capture",
+          "在 POS 電腦安裝並開啟 GV-POS S/W Capture",
+          "選擇 Serial Port 或 TCP/IP Port",
+          "設定 COM Port 或 TCP/IP Port / Password",
+          "啟動 S/W Capture 擷取",
+          "GV-VMS → Accessories → POS Device Setup",
+          "新增 POS Device，Printer Type 與 S/W Capture 傳輸方式一致",
+          "設定 IP / Port / Password 或 COM 通訊參數",
+          "設定 Mapping Camera、Filter Setting 與 Text Setup",
+          "在 POS 端產生交易",
+          "確認 GV-VMS Live View / POS Device 是否顯示交易文字"
+        ]
+      },
+      { type: "spacer" },
+      {
+        type: "list",
+        title: "常見問題排查",
+        items: [
+          "<strong>VMS 收不到資料</strong>：確認 POS S/W Capture 是否已啟動，VMS 端 IP、Port、Password 或 COM Port 是否設定正確。",
+          "<strong>TCP/IP 無法連線</strong>：確認 POS 電腦與 VMS 是否在可連線網段，防火牆是否擋住指定 Port。",
+          "<strong>Serial 無法接收</strong>：確認 COM Port 是否選對，Baud Rate、Data Bits、Parity、Stop Bits 是否一致。",
+          "<strong>畫面沒有疊字</strong>：確認 Mapping Camera 是否選對，Text Setup 是否啟用 Print on screen。",
+          "<strong>交易資料格式不正確或亂碼</strong>：確認 Filter Setting、Character Encoding / Codepage Mapping 是否符合 POS 輸出格式。",
+          "<strong>授權警告</strong>：確認 GV-USB Dongle 是否包含 POS S/W Capture / POS Port 授權，必要時重新啟動 GV-VMS。"
+        ]
+      },
+      {
+        type: "note",
+        title: "實務提醒",
+        content: "本篇為官方資料與同事說明整理，尚未經公司測試環境實作驗證。實際案場需先確認 POS 是否為 Windows-based POS、能否安裝 S/W Capture、交易資料格式是否屬於 Graphic Mode / EMF / raw data，以及要用 RS-232 還是 TCP/IP 傳送到 GV-VMS。"
+      },
+      {
+        type: "callout",
+        label: "記憶點",
+        content: "POS S/W Capture = 軟體裝在 Windows POS 上，直接抓交易 / 列印資料，再用 RS-232 或 TCP/IP 送到 VMS。Text Sender 是讀檔，Data Capture 是硬體接線，S/W Capture 是軟體住在 POS 裡抓資料。"
+      }
+    ]
   },
 {
     id: "vms-pos-05",
