@@ -1,7 +1,7 @@
 /* notes-vms-overview.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-01",
+    id: "vms-overview-01",
     title: "GV-VMS 是什麼？",
     category: "VMS 總覽",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["VMS", "核心軟體"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["ipcam-1", "vms-05", "arch-1", "cms-1", "asmgr-1", "recorder-1", "vms-30"],
+    related: ["ipcam-1", "vms-onboarding-01", "arch-1", "cms-1", "asmgr-1", "recorder-1", "vms-systemconfig-01"],
 
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 3 Video Analysis，3.1 Local Face Recognition，p.14
     sections: [

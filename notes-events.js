@@ -1,7 +1,7 @@
 /* notes-events.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-04",
+    id: "vms-events-01",
     title: "Motion Detection 與 PVD Motion 的差異",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["Motion Detection", "PVD", "事件偵測"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["ipcam-1", "vms-25", "vms-27"],
+    related: ["ipcam-1", "vms-events-02", "vms-events-04"],
 
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 3 Video Analysis，3.3 Easy AI Event Adjustment，p.22-23；
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，4.3 Smart PVD Motion Search，p.33-34；
@@ -57,7 +57,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-25",
+    id: "vms-events-02",
     title: "Motion Detection 進階設定：偵測區域與靈敏度",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -65,7 +65,7 @@ notes.push(
     tags: ["Motion Detection", "Set Region", "Sensitivity"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-04", "vms-26", "vms-27", "vms-29", "vms-35", "vms-43"],
+    related: ["vms-events-01", "vms-events-03", "vms-events-04", "vms-events-06", "vms-systemconfig-06", "vms-playback-07"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，1.3.4 Setting Up Motion Detection，p.24-29
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，4.3 Smart PVD Motion Search，p.31
@@ -78,7 +78,7 @@ notes.push(
       { type: "spacer" },
       {
         type: "text",
-        title: "Advanced Motion Detection Setup 介面",
+        title: "Advanced Motion Detection Setup介面",
       },
       { type: "image", num: 1, label: "Advanced Motion Detection Setup：Set Region 畫面" },
       {
@@ -134,7 +134,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-26",
+    id: "vms-events-03",
     title: "Motion Detection 進階設定：物件大小過濾（User-defined）",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -142,7 +142,7 @@ notes.push(
     tags: ["User-defined", "Object Size"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-25"],
+    related: ["vms-events-02"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，1.3.4 Setting Up Motion Detection，Advanced Motion Detection Setup / Define Object，p.27
     sections: [
@@ -178,7 +178,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-27",
+    id: "vms-events-04",
     title: "PVD Detection 基礎：People / Vehicle Detection",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -186,7 +186,8 @@ notes.push(
     tags: ["PVD", "People Vehicle Detection"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-28", "vms-04", "vms-25", "vms-35"],
+    related: ["vms-events-05", "vms-events-01", "vms-events-02", "vms-systemconfig-06"],
+
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / Advanced Motion Detection Setup
     // 參考文獻：GV-VMS Feature Guide V20，Chapter 4 Video Playback，Smart PVD Motion Search，p.30
@@ -244,7 +245,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-28",
+    id: "vms-events-05",
     title: "PVD Detection 進階：Confidence 與 Size Filter",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -252,7 +253,7 @@ notes.push(
     tags: ["Confidence", "Size Filter"],
     updated: "2026-07-22",
     status: "ok",
-    related: ["vms-27", "vms-29"],
+    related: ["vms-events-04", "vms-events-06"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / PVD Setting
     // 參考文獻：GV-VMS User's Manual V20，Event List / AI Query，PVD event type、confidence、size 顯示
@@ -311,7 +312,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-29",
+    id: "vms-events-06",
     title: "PVD Detection 進階：ROI / Mask 與 Show Rect",
     category: "事件與偵測",
     categoryId: "gvvms",
@@ -319,7 +320,7 @@ notes.push(
     tags: ["ROI", "Mask", "Show Rect"],
     updated: "2026-07-22",
     status: "ok",
-    related: ["vms-25", "vms-28"],
+    related: ["vms-events-02", "vms-events-05"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 1 Configuring Main System，Setting Up Motion Detection / PVD Setting
     // 參考文獻：GV-VMS User's Manual V20，PVD Event List / AI Query，type、confidence、size 顯示與 PVD 設定調整

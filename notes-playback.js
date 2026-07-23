@@ -1,7 +1,7 @@
 /* notes-playback.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-37",
+    id: "vms-playback-01",
     title: "Playback 總覽、入口與 Playback Layout",
     category: "Playback",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["Playback", "總覽", "Layout"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-02", "vms-38"],
+    related: ["vms-liveview-01", "vms-playback-02"],
     sections: [
       {
         type: "text",
@@ -57,7 +57,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-38",
+    id: "vms-playback-02",
     title: "日期選擇與 Timeline 時間軸",
     category: "Playback",
     categoryId: "gvvms",
@@ -65,7 +65,7 @@ notes.push(
     tags: ["Camera Date Viewer", "Timeline"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-37", "vms-41", "vms-46"],
+    related: ["vms-playback-01", "vms-playback-05", "vms-systemlog-01"],
     sections: [
       {
         type: "text",
@@ -92,7 +92,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-39",
+    id: "vms-playback-03",
     title: "播放控制：Real Time / Frame by Frame",
     category: "Playback",
     categoryId: "gvvms",
@@ -125,7 +125,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-40",
+    id: "vms-playback-04",
     title: "A/B 區間播放",
     category: "Playback",
     categoryId: "gvvms",
@@ -153,7 +153,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-41",
+    id: "vms-playback-05",
     title: "Display Timeline 與 Display All Database",
     category: "Playback",
     categoryId: "gvvms",
@@ -161,7 +161,7 @@ notes.push(
     tags: ["Display Timeline", "Display All Database"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-38", "vms-46"],
+    related: ["vms-playback-02", "vms-systemlog-01"],
     sections: [
       {
         type: "text",
@@ -193,7 +193,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-42",
+    id: "vms-playback-06",
     title: "Bookmark 書籤",
     category: "Playback",
     categoryId: "gvvms",
@@ -201,7 +201,7 @@ notes.push(
     tags: ["Bookmark", "Never Recycle"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-20", "vms-44"],
+    related: ["vms-recordsetting-01", "vms-playback-08"],
     sections: [
       {
         type: "text",
@@ -223,7 +223,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-43",
+    id: "vms-playback-07",
     title: "Object Search / Smart Motion Search",
     category: "Playback",
     categoryId: "gvvms",
@@ -231,7 +231,7 @@ notes.push(
     tags: ["Object Search", "Smart Motion Search", "Alarm Search"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-25", "vms-44", "vms-45"],
+    related: ["vms-events-02", "vms-playback-08", "vms-playback-09"],
     sections: [
       {
         type: "text",
@@ -259,7 +259,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-44",
+    id: "vms-playback-08",
     title: "Backup：原始錄影備份",
     category: "Playback",
     categoryId: "gvvms",
@@ -267,7 +267,7 @@ notes.push(
     tags: ["Backup", "Backup Schedule", "Never Recycle"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-42", "vms-45", "vms-43"],
+    related: ["vms-playback-06", "vms-playback-09", "vms-playback-07"],
     sections: [
       {
         type: "text",
@@ -311,7 +311,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-45",
+    id: "vms-playback-09",
     title: "Save as AVI：輸出一般影片",
     category: "Playback",
     categoryId: "gvvms",
@@ -319,7 +319,7 @@ notes.push(
     tags: ["Save as AVI", "Privacy Mask", "Merge"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-44", "vms-43"],
+    related: ["vms-playback-08", "vms-playback-07"],
     sections: [
       {
         type: "text",
@@ -389,42 +389,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-46",
-    title: "Advanced System Log 與 Event 查詢",
-    category: "Playback",
-    categoryId: "gvvms",
-    subgroupId: "playback",
-    tags: ["Advanced System Log", "Event List Query"],
-    updated: "2026-07-16",
-    status: "ok",
-    related: ["vms-38", "vms-41"],
-    sections: [
-      {
-        type: "text",
-        content: "Playback 中可進入 Advanced System Log，偏向查系統層級與操作層級紀錄，例如 Login／Logout、Start Monitor／Stop Monitor、新增／移除 Camera、修改 Camera Setting、修改 Motion Detection 設定、Save as AVI／Merge、系統異常、Camera 連線／斷線。"
-      },
-      {
-        type: "text",
-        content: "實測發現：Motion／PVD 這類高頻影像事件，不一定會逐筆寫入 Advanced System Log。原因是這類事件數量可能非常大，若全部寫進 System Log，資料量會爆炸。"
-      },
-      {
-        type: "text",
-        content: "若要查 Motion／PVD／AI Event，應優先查看：Playback Timeline、Event List、Display Timeline、WebCam Event List Query。"
-      },
-      {
-        type: "note",
-        title: "補充",
-        content: "WebCam 的 Event List Query 介面與 Advanced System Log 類似，但可查 AI Event，因此可以查到 PVD。"
-      },
-      {
-        type: "callout",
-        label: "記憶點",
-        content: "Advanced System Log = 查系統操作；Event List Query = 查影像事件／AI Event；Playback Timeline = 看錄影與事件標記。"
-      }
-    ]
-  },
-{
-    id: "vms-47",
+    id: "vms-playback-10",
     title: "Digital Watermark 補充：WMProof 驗證",
     category: "Playback",
     categoryId: "gvvms",
@@ -432,7 +397,7 @@ notes.push(
     tags: ["Digital Watermark", "WMProof"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-20"],
+    related: ["vms-recordsetting-01"],
     sections: [
       {
         type: "text",

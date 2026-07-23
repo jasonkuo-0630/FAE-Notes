@@ -1,7 +1,7 @@
 /* notes-camerasettings.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-11",
+    id: "vms-camerasettings-01",
     title: "Camera Settings 入口與整體頁籤總覽",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["Camera Settings", "入口"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-05", "vms-12", "vms-19", "vms-30"],
+    related: ["vms-onboarding-01", "vms-camerasettings-02", "vms-camerasettings-09", "vms-systemconfig-01"],
     sections: [
       {
         type: "text",
@@ -38,7 +38,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-12",
+    id: "vms-camerasettings-02",
     title: "Camera · General Setting：基本資訊與連線設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -46,7 +46,7 @@ notes.push(
     tags: ["General Setting", "時間同步", "DST"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-11", "vms-13"],
+    related: ["vms-camerasettings-01", "vms-camerasettings-03"],
     sections: [
       {
         type: "text",
@@ -76,7 +76,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-13",
+    id: "vms-camerasettings-03",
     title: "Camera · Video Setting：影像屬性與鏡頭設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -84,7 +84,7 @@ notes.push(
     tags: ["Video Setting", "Image Orientation", "Camera Lens"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-12", "vms-14"],
+    related: ["vms-camerasettings-02", "vms-camerasettings-04"],
     sections: [
       {
         type: "text",
@@ -129,7 +129,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-14",
+    id: "vms-camerasettings-04",
     title: "Camera · Video Stream：Main / Sub Stream 串流設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -137,7 +137,7 @@ notes.push(
     tags: ["Video Stream", "Codec", "GOP", "Bitrate"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-13", "vms-15", "vms-10"],
+    related: ["vms-camerasettings-03", "vms-camerasettings-05", "vms-onboarding-06"],
     sections: [
       {
         type: "text",
@@ -219,7 +219,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-15",
+    id: "vms-camerasettings-05",
     title: "Camera · Audio Setting：音訊相關設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -227,7 +227,7 @@ notes.push(
     tags: ["Audio Setting", "Wave Out", "Rec Audio"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-14", "vms-16"],
+    related: ["vms-camerasettings-04", "vms-camerasettings-06"],
     sections: [
       {
         type: "text",
@@ -264,7 +264,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-16",
+    id: "vms-camerasettings-06",
     title: "Camera · Abnormality：異常事件設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -272,7 +272,7 @@ notes.push(
     tags: ["Abnormality", "I/O", "Invoke Alarm", "Notification"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-15", "vms-17"],
+    related: ["vms-camerasettings-05", "vms-camerasettings-07"],
     sections: [
       {
         type: "text",
@@ -311,7 +311,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-17",
+    id: "vms-camerasettings-07",
     title: "Camera · Record：錄影格式與幀率策略",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -319,7 +319,7 @@ notes.push(
     tags: ["Record", "Recording codec", "Frame rate", "Privacy Mask"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-16", "vms-18", "vms-20", "vms-22"],
+    related: ["vms-camerasettings-06", "vms-camerasettings-08", "vms-recordsetting-01", "vms-recordsetting-03"],
     sections: [
       {
         type: "text",
@@ -364,7 +364,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-18",
+    id: "vms-camerasettings-08",
     title: "Camera · Advanced：進階效能設定",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -372,7 +372,7 @@ notes.push(
     tags: ["Advanced", "Caching", "On Demand Display"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-17", "vms-19"],
+    related: ["vms-camerasettings-07", "vms-camerasettings-09"],
     sections: [
       {
         type: "text",
@@ -397,7 +397,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-19",
+    id: "vms-camerasettings-09",
     title: "Camera · POE Switch：遠端重啟",
     category: "Camera Settings",
     categoryId: "gvvms",
@@ -405,7 +405,7 @@ notes.push(
     tags: ["POE Switch", "Reboot"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-18", "vms-11"],
+    related: ["vms-camerasettings-08", "vms-camerasettings-01"],
     sections: [
       {
         type: "text",

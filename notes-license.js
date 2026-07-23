@@ -1,7 +1,7 @@
 /* notes-license.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "license-01",
+    id: "vms-license-01",
     title: "License：GV-USB Dongle 與 Software License",
     category: "License",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["License", "Dongle", "Software License", "GVUSBKeyClient", "License Activation Tool"],
     updated: "2026-07-15",
     status: "draft",
-    related: ["vms-05", "vms-06"],
+    related: ["vms-onboarding-01", "vms-onboarding-02"],
 
     // 內容來源：GV-VMS User's Manual（各版本 Channel 數量與免費額度略有差異，待自行查證版本後更新）。
     // 已驗證（實測截圖）：VMS 內建圖示只認 Dongle；Software License 可透過 Windows 開始功能表的

@@ -1,7 +1,7 @@
 /* notes-recordsetting.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-20",
+    id: "vms-recordsetting-01",
     title: "Record Setting 入口與整體錄影設定",
     category: "Record Setting",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["Record Setting", "入口", "整體設定"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-21", "vms-17", "vms-42", "vms-47", "vms-50"],
+    related: ["vms-recordsetting-02", "vms-camerasettings-07", "vms-playback-06", "vms-playback-10", "vms-systemconfig-10"],
     sections: [
       {
         type: "text",
@@ -53,7 +53,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-21",
+    id: "vms-recordsetting-02",
     title: "Camera 個別錄影設定：Record Type / Storage / Stream",
     category: "Record Setting",
     categoryId: "gvvms",
@@ -61,7 +61,7 @@ notes.push(
     tags: ["Record Type", "Storage", "Stream"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-22", "vms-10", "vms-20", "vms-23", "vms-24"],
+    related: ["vms-recordsetting-03", "vms-onboarding-06", "vms-recordsetting-01", "vms-recordsetting-04", "vms-recordsetting-05"],
     sections: [
       {
         type: "text",
@@ -104,7 +104,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-22",
+    id: "vms-recordsetting-03",
     title: "Camera · Advanced：SD 卡回補、Pre/Post-Record 與事件錄影幀率",
     category: "Record Setting",
     categoryId: "gvvms",
@@ -112,7 +112,7 @@ notes.push(
     tags: ["Advanced", "Pre-Record", "Post-Rec"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-17", "vms-21"],
+    related: ["vms-camerasettings-07", "vms-recordsetting-02"],
     sections: [
       {
         type: "text",
@@ -152,7 +152,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-23",
+    id: "vms-recordsetting-04",
     title: "Add Recording Location：建立錄影儲存位置",
     category: "Record Setting",
     categoryId: "gvvms",
@@ -160,7 +160,7 @@ notes.push(
     tags: ["Add Recording Location", "Storage", "Keep Days"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-24", "vms-21"],
+    related: ["vms-recordsetting-05", "vms-recordsetting-02"],
     sections: [
       {
         type: "text",
@@ -199,7 +199,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-24",
+    id: "vms-recordsetting-05",
     title: "Automatically Assign Partition to Camera：自動分配錄影分區",
     category: "Record Setting",
     categoryId: "gvvms",
@@ -207,7 +207,7 @@ notes.push(
     tags: ["Automatically Assign Partition", "多硬碟"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-23", "vms-21"],
+    related: ["vms-recordsetting-04", "vms-recordsetting-02"],
     sections: [
       {
         type: "text",

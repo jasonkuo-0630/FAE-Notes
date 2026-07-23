@@ -1,7 +1,7 @@
 /* notes-systemconfig.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-30",
+    id: "vms-systemconfig-01",
     title: "System Configure 總覽與進入方式",
     category: "System Configure",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["System Configure", "總覽", "進入方式"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01", "vms-11", "vms-31", "vms-33", "vms-34", "vms-48"],
+    related: ["vms-overview-01", "vms-camerasettings-01", "vms-systemconfig-02", "vms-systemconfig-04", "vms-systemconfig-05", "vms-systemconfig-08"],
     sections: [
       {
         type: "text",
@@ -36,7 +36,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-31",
+    id: "vms-systemconfig-02",
     title: "General Setting（一）：主機資訊、啟動延遲與 Service Mode",
     category: "System Configure",
     categoryId: "gvvms",
@@ -44,7 +44,7 @@ notes.push(
     tags: ["General Setting", "Location Name", "Service Mode"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-30", "vms-32"],
+    related: ["vms-systemconfig-01", "vms-systemconfig-03"],
     sections: [
       {
         type: "text",
@@ -74,7 +74,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-32",
+    id: "vms-systemconfig-03",
     title: "General Setting（二）：顯示、對講與 Zoom 自動化、離開行為",
     category: "System Configure",
     categoryId: "gvvms",
@@ -82,7 +82,7 @@ notes.push(
     tags: ["Smooth Mode", "Talk Back", "Exit Option"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-31", "vms-03"],
+    related: ["vms-systemconfig-02", "vms-liveview-02"],
     sections: [
       {
         type: "text",
@@ -122,7 +122,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-33",
+    id: "vms-systemconfig-04",
     title: "Startup：啟動時要自動做什麼",
     category: "System Configure",
     categoryId: "gvvms",
@@ -130,7 +130,7 @@ notes.push(
     tags: ["Startup", "Auto Monitoring", "GPU Decode"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-30", "vms-36"],
+    related: ["vms-systemconfig-01", "vms-systemconfig-07"],
     sections: [
       {
         type: "text",
@@ -191,7 +191,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-34",
+    id: "vms-systemconfig-05",
     title: "Set Position：VMS 視窗顯示位置與大小",
     category: "System Configure",
     categoryId: "gvvms",
@@ -199,7 +199,7 @@ notes.push(
     tags: ["Set Position", "Panel Resolution"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-30"],
+    related: ["vms-systemconfig-01"],
     sections: [
       {
         type: "text",
@@ -223,7 +223,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-35",
+    id: "vms-systemconfig-06",
     title: "Send Alerts Approach Setup：事件通知與觸發設定",
     category: "System Configure",
     categoryId: "gvvms",
@@ -231,7 +231,7 @@ notes.push(
     tags: ["Send Alerts", "Notify", "HTTP Alert"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-25", "vms-27"],
+    related: ["vms-events-02", "vms-events-04"],
     sections: [
       {
         type: "text",
@@ -275,7 +275,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-36",
+    id: "vms-systemconfig-07",
     title: "System Idle Protection Setting 與 Fast Key Lock Setup",
     category: "System Configure",
     categoryId: "gvvms",
@@ -283,7 +283,7 @@ notes.push(
     tags: ["System Idle Protection", "Fast Key Lock"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-33"],
+    related: ["vms-systemconfig-04"],
     sections: [
       {
         type: "text",
@@ -332,7 +332,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-48",
+    id: "vms-systemconfig-08",
     title: "Schedule Edit 總覽：建立排程與套用到日曆",
     category: "System Configure",
     categoryId: "gvvms",
@@ -340,7 +340,7 @@ notes.push(
     tags: ["Schedule Edit", "Add", "Plan"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-30", "vms-49"],
+    related: ["vms-systemconfig-01", "vms-systemconfig-09"],
     sections: [
       {
         type: "text",
@@ -371,7 +371,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-49",
+    id: "vms-systemconfig-09",
     title: "Schedule 功能列表：Edit Special Day / Weekly / Monthly / Setup Wizard",
     category: "System Configure",
     categoryId: "gvvms",
@@ -379,7 +379,7 @@ notes.push(
     tags: ["Edit Special Day", "Edit Weekly", "Edit Monthly", "Setup Wizard"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-48", "vms-50"],
+    related: ["vms-systemconfig-08", "vms-systemconfig-10"],
     sections: [
       {
         type: "text",
@@ -417,7 +417,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-50",
+    id: "vms-systemconfig-10",
     title: "Schedule Edit · Application：介面總覽與 Camera 設定",
     category: "System Configure",
     categoryId: "gvvms",
@@ -425,7 +425,7 @@ notes.push(
     tags: ["Application", "Camera", "Include", "Exclude"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-49", "vms-51", "vms-20"],
+    related: ["vms-systemconfig-09", "vms-systemconfig-11", "vms-recordsetting-01"],
     sections: [
       {
         type: "text",
@@ -465,7 +465,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-51",
+    id: "vms-systemconfig-11",
     title: "Schedule Edit · Application：AVP / I/O Monitoring / Server / PTZ Object Tracking",
     category: "System Configure",
     categoryId: "gvvms",
@@ -473,7 +473,7 @@ notes.push(
     tags: ["AVP", "I/O Monitoring", "Server", "PTZ Object Tracking"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-50"],
+    related: ["vms-systemconfig-10"],
     sections: [
       {
         type: "text",

@@ -9,7 +9,7 @@
 const sidebarStructure = [
   { type: "item", cat: "系統架構" },
   { type: "supergroup", label: "GV-VMS", subgroups: [
-      { label: "核心功能", items: ["VMS 總覽", "Live View", "Playback", "Backup", "事件與偵測"] },
+      { label: "核心功能", items: ["VMS 總覽", "Live View", "Playback", "Backup", "事件與偵測", "System Log", "WebCam"] },
       { label: "設定功能", items: ["IP Device Setup", "Camera Settings", "Record Setting", "System Configure"] },
       { label: "通用功能", items: ["License", "POS 整合"] },
       { label: "排查與診斷", items: ["Troubleshooting"] }
@@ -29,6 +29,7 @@ const categoryParent = {
   "VMS 總覽": ["GV-VMS", "核心功能"], "Live View": ["GV-VMS", "核心功能"],
   "Playback": ["GV-VMS", "核心功能"], "Backup": ["GV-VMS", "核心功能"],
   "事件與偵測": ["GV-VMS", "核心功能"],
+  "System Log": ["GV-VMS", "核心功能"], "WebCam": ["GV-VMS", "核心功能"],
   "IP Device Setup": ["GV-VMS", "設定功能"], "Camera Settings": ["GV-VMS", "設定功能"],
   "Record Setting": ["GV-VMS", "設定功能"], "System Configure": ["GV-VMS", "設定功能"],
   "License": ["GV-VMS", "通用功能"],
@@ -44,6 +45,8 @@ const categoryMeta = {
   "IP Device Setup": { subtitle: "新增、掃描、批次匯入 Camera 的方式比較與實務注意事項。" },
   "Camera Settings": { subtitle: "單一 Camera 的頁籤設定：影像、串流、錄影、進階與異常事件。" },
   "Playback":        { subtitle: "回放、搜尋、書籤、備份與匯出：查錄影、看事件、找片段。" },
+  "System Log":      { subtitle: "System Log 與 Advanced System Log：系統紀錄／事件紀錄的兩種查詢入口。" },
+  "WebCam":          { subtitle: "透過瀏覽器遠端存取 GV-VMS，不必在遠端電腦安裝完整 VMS（籌備中）。" },
   "Backup":          { subtitle: "影像備份流程與注意事項（籌備中）。" },
   "Record Setting":  { subtitle: "整體錄影設定、Camera 個別錄影方式、儲存位置與硬碟分配。" },
   "System Configure":{ subtitle: "GV-VMS 主機層級設定：啟動行為、視窗位置、事件通知、閒置保護與快捷鍵。" },

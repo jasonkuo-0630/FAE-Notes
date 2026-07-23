@@ -1,7 +1,7 @@
 /* notes-liveview.js —— 由 notes-data-core.js 提供的 notes 陣列，這裡只負責 push 進去 */
 notes.push(
 {
-    id: "vms-02",
+    id: "vms-liveview-01",
     title: "Live View：介面區域、Layout 與 Camera 工具列",
     category: "Live View",
     categoryId: "gvvms",
@@ -9,7 +9,7 @@ notes.push(
     tags: ["Live View", "Layout", "Monitor", "Bookmark"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-03"],
+    related: ["vms-liveview-02"],
 
     // 參考文獻：GV-VMS Quick Guide V20
     // Chapter 2 Getting Started，2.2 Accessing Camera Live View / 2.3 Start Monitoring，p.8~9
@@ -84,7 +84,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-03",
+    id: "vms-liveview-02",
     title: "Live View：Zoom / Scan / Popup Window 介紹",
     category: "Live View",
     categoryId: "gvvms",
@@ -92,7 +92,7 @@ notes.push(
     tags: ["Zoom Window", "Scan Window", "Popup Window"],
     updated: "2026-07-17",
     status: "ok",
-    related: ["vms-02", "vms-32"],
+    related: ["vms-liveview-01", "vms-systemconfig-03"],
 
     // 參考文獻：GV-VMS Quick Guide V20，Chapter 4 Live View，4.2 Functions on the Live View，4.2.1 Zoom Window / 4.2.2 Scan Window / 4.2.3 Popup Window，p.17-19；
     // 參考文獻：GV-VMS User's Manual V17，Chapter 1 Configuring Main System，1.10.1 Popping up Live View，p.52

@@ -4,7 +4,7 @@
    categoryId / subgroupId 是為了以後真的換成分類 ID 系統時先埋好，目前還沒有任何函式在讀它們。 */
 notes.push(
   {
-    id: "vms-05",
+    id: "vms-onboarding-01",
     title: "IP Device Setup 總覽與加入方式比較",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -12,7 +12,7 @@ notes.push(
     tags: ["IP Device Setup", "總覽", "Camera Install"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["vms-06", "vms-07", "vms-08", "vms-09", "vms-10", "license-01"],
+    related: ["vms-onboarding-02", "vms-onboarding-03", "vms-onboarding-04", "vms-onboarding-05", "vms-onboarding-06", "vms-license-01"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1 Adding IP Cameras，p.90
     sections: [
@@ -86,7 +86,7 @@ notes.push(
     ]
   },
   {
-    id: "vms-06",
+    id: "vms-onboarding-02",
     title: "Add Camera：手動輸入加入",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -94,7 +94,7 @@ notes.push(
     tags: ["Add Camera", "手動設定"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["vms-05", "protocol-1"],
+    related: ["vms-onboarding-01", "protocol-1"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1.1 Adding Cameras Manually，p.92-93
     sections: [
@@ -169,7 +169,7 @@ notes.push(
     ]
   },
   {
-    id: "vms-07",
+    id: "vms-onboarding-03",
     title: "Scan Camera：掃描網段加入",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -177,7 +177,7 @@ notes.push(
     tags: ["Scan Camera", "網段掃描"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["vms-05"],
+    related: ["vms-onboarding-01"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1.2 Scanning for Cameras，p.94
     sections: [
@@ -233,7 +233,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-08",
+    id: "vms-onboarding-04",
     title: "Automatic Setup：批量掃描加入",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -241,7 +241,7 @@ notes.push(
     tags: ["Automatic Setup", "網段掃描"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["vms-05"],
+    related: ["vms-onboarding-01"],
 
     // 內容來源：GV-VMS v20.1 實測 / 驗收整理。
     // 補充：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1 Adding IP Cameras，p.90 僅列出 Automatic Setup 功能入口，未見詳細流程說明。
@@ -306,7 +306,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-09",
+    id: "vms-onboarding-05",
     title: "IP Device Utility：搜尋、對應與匯入",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -314,7 +314,7 @@ notes.push(
     tags: ["IP Device Utility", "Import Camera", ".ipcd"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["vms-05"],
+    related: ["vms-onboarding-01"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1.3 Mapping GV-IP Cameras Using GV-IP Device Utility，p.95
     sections: [
@@ -405,7 +405,7 @@ notes.push(
     ]
   },
 {
-    id: "vms-10",
+    id: "vms-onboarding-06",
     title: "Single Stream vs Dual Streams：串流模式選擇",
     category: "IP Device Setup",
     categoryId: "gvvms",
@@ -413,7 +413,7 @@ notes.push(
     tags: ["Single Stream", "Dual Streams", "串流"],
     updated: "2026-07-14",
     status: "ok",
-    related: ["ipcam-1", "vms-05"],
+    related: ["ipcam-1", "vms-onboarding-01"],
 
     // 參考文獻：GV-VMS User's Manual V20，Chapter 2 IP Camera Setup，2.1.1 Adding Cameras Manually，p.92
     // 補充：串流使用邏輯依 GV-VMS v20.1 實測 / 同事說明整理。

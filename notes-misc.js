@@ -9,7 +9,7 @@ notes.push(
     tags: ["架構", "總覽", "產品定位"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01", "asmgr-1"],
+    related: ["vms-overview-01", "asmgr-1"],
     sections: [
       {
         type: "text",
@@ -77,7 +77,7 @@ notes.push(
     tags: ["IP Camera", "影像來源", "Main/Sub Stream"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01", "vms-10", "vms-04", "vms-07", "protocol-1", "ipcam-2"],
+    related: ["vms-overview-01", "vms-onboarding-06", "vms-events-01", "vms-onboarding-03", "protocol-1", "ipcam-2"],
     sections: [
       {
         type: "text",
@@ -133,7 +133,7 @@ notes.push(
     tags: ["Control Center", "集中監看", "Video Wall"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01", "cms-2", "cms-3"],
+    related: ["vms-overview-01", "cms-2", "cms-3"],
     sections: [
       {
         type: "text",
@@ -325,7 +325,7 @@ notes.push(
     tags: ["ASManager", "門禁", "Access Control"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01", "arch-1"],
+    related: ["vms-overview-01", "arch-1"],
     sections: [
       {
         type: "text",
@@ -383,7 +383,7 @@ notes.push(
     tags: ["DVR", "NVR", "SNVR", "VMS", "比較"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-01"],
+    related: ["vms-overview-01"],
     sections: [
       {
         type: "list",
@@ -425,7 +425,7 @@ notes.push(
     tags: ["ONVIF", "RTSP", "GV Protocol", "協定"],
     updated: "2026-07-16",
     status: "ok",
-    related: ["vms-06", "ipcam-1"],
+    related: ["vms-onboarding-02", "ipcam-1"],
     sections: [
       {
         type: "list",

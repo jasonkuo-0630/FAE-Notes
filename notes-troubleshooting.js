@@ -3,7 +3,7 @@
    跟手冊逐頁對照的 GV-VMS 功能筆記性質不同，所以參考來源多半是「內容來源」而非「參考文獻」。 */
 notes.push(
 {
-    id: "ts-01",
+    id: "vms-troubleshooting-01",
     title: "IP Device 前置準備：雙網卡環境下的網段設定",
     category: "Troubleshooting",
     categoryId: "gvvms",
