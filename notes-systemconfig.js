@@ -171,7 +171,25 @@ notes.push(
       {
         type: "text",
         title: "GPU Decode",
-        content: "是讓 GPU 協助影像解碼，分擔 CPU 負擔，可降低 CPU 負擔、提升多路 Live View 解碼能力，對高解析度、多畫面監控較有幫助，但效果仍取決於 GPU 型號、Driver、Codec、H.264/H.265 支援、串流數量、解析度與 FPS。"
+        content: "GPU Decode 是讓 GPU 協助處理 H.264 / H.265 影像解碼，分擔 CPU 負擔。它主要影響 Live View / Playback 顯示時的解碼效能，對高解析度、多分割畫面、多路 Camera 或 H.265 串流較有幫助；但它不是畫質增強功能，也不是 AI 分析加速功能，實際效果仍取決於 GPU 型號、Driver、Codec、串流數量、解析度、FPS 與顯示器連接方式。"
+      },
+      {
+        type: "list",
+        title: "GPU Decode 的限制與注意事項",
+        items: [
+          "GPU Decode 主要針對 H.264 / H.265 影像解碼，不代表所有 Codec 或所有影像處理功能都會交給 GPU。",
+          "GPU Decode 是解碼效能設定，不是畫質提升功能；開啟後畫面不一定會變清楚，主要差異通常表現在 CPU 使用率下降、Live View / Playback 較順。",
+          "如果 Camera 數量少、解析度不高，或 CPU 本來就足夠，開啟 GPU Decode 後肉眼可能看不出明顯差異。",
+          "GPU Decode 效果會受 GPU 型號、Driver、Codec、解析度、FPS、串流數量與多螢幕配置影響，不是勾選後一定大幅改善。",
+          "官方說 GPU decoding 是由連接到各顯示器的 GPU 執行；因此多 GPU / 多螢幕環境下，要注意畫面實際接在哪一張 GPU 上。",
+          "若同時有 Onboard GPU 與 External GPU，且希望 Onboard GPU 也參與 H.264 / H.265 GPU decoding，Onboard GPU 必須連接螢幕。",
+          "Onboard GPU 需符合官方列出的 CPU / GPU 世代條件；例如 H.265 GPU decoding 對 Onboard GPU 的世代要求比 H.264 高。",
+          "External GPU 也需符合官方條件；NVIDIA 顯示卡需符合 CUDA compute capability 與 VRAM 要求，且官方註記 NVIDIA cards 支援最高到 8 MP resolution。",
+          "GPU Decode 主要分擔解碼，不等於錄影寫入、硬碟 I/O、網路頻寬、AI 分析、PVD 偵測都會被 GPU 解決。",
+          "如果瓶頸其實在硬碟寫入、網路頻寬、Camera 串流設定、VMS 資料庫或 AI 分析負載，單純開 GPU Decode 不一定能改善。",
+          "GPU Decode 與 Fisheye Dewarp 都會用到 GPU 能力，但兩者不是同一件事；GPU Decode 是影片解碼，Fisheye Dewarp 是魚眼畫面展開處理。",
+          "實務確認時不要只看畫面順不順，也可以觀察 Windows 工作管理員中的 CPU 使用率、GPU Video Decode 使用率，以及 VMS 多分割畫面是否有卡頓或掉幀。"
+        ]
       },
       {
         type: "text",
