@@ -118,9 +118,9 @@ notes.push({
       type: "list",
       title: "4. Record Database 的用途",
       items: [
-        "Record Database 不是影片本體，而是 GV-VMS 用來管理錄影與事件的資料庫 / 索引資料。",
-        "影片檔是影像內容；Database 則用來記錄錄影時間、Camera 對應、事件資料與時間軸索引。",
-        "VMS 需要 Database 才能在 Playback / Timeline / Event Search 中正確列出錄影與事件。",
+        "Record Database 是 GV-VMS 用來管理錄影與事件的資料庫 / 索引資料。",
+        "影片檔是影像內容；Database 則用來記錄該錄影檔錄影時間、Camera 對應、事件資料與時間軸索引。",
+        "VMS 需要 Database 才能在找到對應的錄影檔，以及正確列出錄影與事件。",
         "如果 Database 異常，可能會出現錄影檔仍存在，但時間軸、事件查詢或回放索引不正常的情況。",
         "注意：System Log、AI Event 圖片、Object Index 等可能有各自的資料庫或儲存位置，不要全部混成同一個 Record Database。",
         "簡單記：影片檔是內容，Database 是索引與事件資料。"
