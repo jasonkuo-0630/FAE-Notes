@@ -30,21 +30,21 @@ notes.push(
         title: "選用邏輯（依序問三個問題）",
         items: [
           "<strong>POS 會不會輸出文字檔？</strong>會的話用 <strong>GV-POS Text Sender</strong>。POS 自己會產生 TXT / INI / JNL 或 raw text files 這類文字紀錄，可以想成 POS 已經把小抄寫好了，Text Sender 只是去把小抄讀出來、送給 VMS。",
-          "<strong>POS 能不能安裝軟體？</strong>如果 POS 是 Windows 電腦、可以裝軟體，但交易資料不是乾淨的文字檔，而是比較像列印畫面的圖形化資料（Graphic Mode / EMF）或其他 raw unprocessed data，就可用 <strong>GV-POS S/W Capture</strong>。它是軟體直接安裝在 POS 電腦裡，擷取 POS 正在產生的交易 / 列印資料。",
-          "<strong>POS 不能裝軟體、沒有文字檔，但可以從印表機線路或明碼文字輸出取得資料？</strong>那就用 <strong>GV-Data Capture</strong>。它是硬體，接在 POS 跟收據印表機 / 發票機中間，把 POS 原本要送去印表機列印的內容，複製一份送給 VMS。"
+          "<strong>POS 能不能安裝軟體？</strong>如果 POS 是 Windows 電腦、可以裝軟體，但交易資料不是乾淨的文字檔，而是比較像列印畫面的圖形化資料（Graphic Mode / EMF）或其他 raw unprocessed data，就可用 <strong>GV-POS S/W Capture</strong>。<br>它是軟體直接安裝在 POS 電腦裡，擷取 POS 正在產生的交易 / 列印資料。",
+          "<strong>POS 不能裝軟體、沒有文字檔，但可以從印表機線路或明碼文字輸出取得資料？</strong>那就用 <strong>GV-Data Capture</strong>。<br>它是硬體，接在 POS 跟收據印表機 / 發票機中間，把 POS 原本要送去印表機列印的內容，複製一份送給 VMS。"
         ]
       },
       { type: "spacer" },
       {
         type: "text",
         title: "GV-POS Text Sender",
-        content: "GV-POS Text Sender 是軟體整合方式，主要從 POS 產生的文字檔取得交易資料，例如 TXT、INI、JNL 或其他 raw text files，再透過網路連線傳送給 GV-VMS。通常需要 POS 與 GV-VMS 在同一個 LAN，讓 GV-VMS / Text Sender 可透過 File Share 或 Network Drive 存取 POS 交易檔案。"
+        content: "GV-POS Text Sender 是軟體整合方式，主要從 POS 產生的文字檔取得交易資料，例如 TXT、INI、JNL 或其他 raw text files，再透過網路連線傳送給 GV-VMS。<br>通常需要 POS 與 GV-VMS 在同一個 LAN，讓 GV-VMS / Text Sender 可透過 File Share 或 Network Drive 存取 POS 交易檔案。"
       },
       { type: "spacer" },
       {
         type: "text",
         title: "GV-POS S/W Capture",
-        content: "GV-POS S/W Capture 是軟體整合方式，適合 Windows-based POS。若 POS 的交易資料不是單純文字檔，而是 Graphic Mode、EMF 或其他 raw unprocessed data，可在 POS 機上安裝 GV-POS S/W Capture，直接擷取 POS 的交易 / 列印資料，再透過 RS-232 或 TCP/IP 傳送到 GV-VMS。"
+        content: "GV-POS S/W Capture 是軟體整合方式，適合 Windows-based POS。<br>若 POS 的交易資料不是單純文字檔，而是 Graphic Mode、EMF 或其他 raw unprocessed data，可在 POS 機上安裝 GV-POS S/W Capture，直接擷取 POS 的交易 / 列印資料，再透過 RS-232 或 TCP/IP 傳送到 GV-VMS。"
       },
       {
         type: "note",
@@ -55,7 +55,7 @@ notes.push(
       {
         type: "text",
         title: "GV-Data Capture",
-        content: "GV-Data Capture 是硬體整合設備，通常接在 POS / Cash Register 與收據印表機之間，擷取 POS 原本要送給印表機的交易文字資料，再送到 GV-VMS。適合不方便在 POS 上裝軟體、POS 沒有輸出文字檔，或 POS 是透過 Serial / Parallel 方式輸出列印資料的環境。"
+        content: "GV-Data Capture 是硬體整合設備，通常接在 POS / Cash Register 與收據印表機之間，擷取 POS 原本要送給印表機的交易文字資料，再送到 GV-VMS。<br>適合不方便在 POS 上裝軟體、POS 沒有輸出文字檔，或 POS 是透過 Serial / Parallel 方式輸出列印資料的環境。"
       },
       {
         type: "note",
@@ -129,7 +129,7 @@ notes.push(
       {
         type: "note",
         title: "授權提醒",
-        content: "GV-POS Text Sender 屬於軟體整合方式，需要對應的 POS Text Sender / POS Port 授權。若 VMS 端沒有授權，設定 POS TextSender Filter 時可能跳出授權警告，甚至強制退出設定。"
+        content: "GV-POS Text Sender 屬於軟體整合方式，需要對應的 POS Text Sender / POS Port 授權。<br>若 VMS 端沒有授權，設定 POS TextSender Filter 時可能跳出授權警告，甚至強制退出設定。"
       },
       { type: "spacer" },
       {
@@ -519,7 +519,7 @@ notes.push(
       {
         type: "text",
         title: "測試與確認方式",
-        content: "設定完成後，可在 POS 端產生一筆交易，確認 GV-VMS 是否收到 POS 文字。若 VMS 有收到資料，應可在 Mapping Camera 的 Live View 上看到 POS 文字，或將 POS Device 直接拖到 Layout 分割畫面獨立顯示交易文字。"
+        content: "設定完成後，可在 POS 端產生一筆交易，確認 GV-VMS 是否收到 POS 文字。<br>若 VMS 有收到資料，應可在 Mapping Camera 的 Live View 上看到 POS 文字，或將 POS Device 直接拖到 Layout 分割畫面獨立顯示交易文字。"
       },
       {
         type: "flow",
