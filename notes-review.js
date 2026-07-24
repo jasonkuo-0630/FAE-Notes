@@ -36,11 +36,11 @@ notes.push({
       title: "Backup 的運用場景 / 好處 / 限制",
       items: [
         "運用場景：需要完整保存原始錄影檔，或希望把某段錄影資料完整複製出來時使用。",
-        "運用場景：內部保存、備份錄影資料、保留原始錄影內容與播放資料時使用。",
+        "內部保存、備份錄影資料、保留原始錄影內容與播放資料時使用。",
         "好處：處理方式較接近直接複製錄影檔，速度通常比重新解碼匯出的 Save as AVI 快。",
-        "好處：較能保留原始錄影資料，不會因重新轉檔或後製設定改變影片內容。",
+        "較能保留原始錄影資料，不會因重新轉檔或後製設定改變影片內容。",
         "限制：比較偏 GV-VMS 錄影資料備份，不像一般 AVI 影片那麼直覺可交付給所有人觀看。",
-        "限制：若對方需要一般影片格式、或需要加上時間文字 / 偵測框 / 特效處理，Backup 就不是主要選擇。"
+        "若對方需要一般影片格式、或需要加上時間文字 / 偵測框 / 特效處理，Backup 就不是主要選擇。"
       ]
     },
     {
@@ -48,14 +48,14 @@ notes.push({
       title: "Save as AVI 的運用場景 / 好處 / 限制",
       items: [
         "運用場景：需要將錄影片段轉成一般影片格式，交給客戶、主管、警方或其他非 VMS 使用者觀看時使用。",
-        "運用場景：需要對錄影畫面套用時間文字、Camera 名稱、偵測框、浮水印、影像效果、剪輯或其他後製設定時使用。",
+        "需要對錄影畫面套用時間文字、Camera 名稱、偵測框、浮水印、影像效果、剪輯或其他後製設定時使用。",
         "好處：輸出結果較容易交付與播放，也能依需求套用後製資訊。",
-        "好處：可將 GV-VMS 錄影重新輸出成較通用的影片格式。",
+        "可將 GV-VMS 錄影重新輸出成較通用的影片格式。",
         "限制：因為需要重新解碼並套用設定，所以匯出同樣長度的影片通常比 Backup 更花時間。",
-        "限制：如果只是要完整複製原始錄影資料，Save as AVI 反而不是最有效率的方式。"
+        "如果只是要完整複製原始錄影資料，Save as AVI 反而不是最有效率的方式。"
       ]
     },
-
+    {type: "space"},
     {
       type: "list",
       title: "2. Save as AVI：Standard Merge / Direct Merge",
@@ -71,11 +71,11 @@ notes.push({
       title: "Standard Merge 的運用場景 / 好處 / 限制",
       items: [
         "運用場景：正式交付影片，需要較完整的匯出設定或後製資訊時使用。",
-        "運用場景：需要加上日期時間、Camera 名稱、偵測框、文字資訊、影像效果，或需要較完整處理流程時使用。",
+        "需要加上日期時間、Camera 名稱、偵測框、文字資訊、影像效果，或需要較完整處理流程時使用。",
         "好處：匯出彈性高，可做較完整的處理與設定。",
-        "好處：適合正式交付、存證、或需要後製資訊的影片匯出。",
+        "適合正式交付、存證、或需要後製資訊的影片匯出。",
         "限制：因為處理較完整，通常比 Direct Merge 更花時間。",
-        "限制：如果只是單支 Camera 快速匯出確認畫面，Standard Merge 可能太慢。"
+        "如果只是單支 Camera 快速匯出確認畫面，Standard Merge 可能太慢。"
       ]
     },
     {
@@ -83,14 +83,14 @@ notes.push({
       title: "Direct Merge 的運用場景 / 好處 / 限制",
       items: [
         "運用場景：只需要快速匯出某一支 Camera 的片段，不需要複雜後製或完整設定時使用。",
-        "運用場景：內部確認、臨時提供畫面、主管或客戶急著看某段錄影時使用。",
+        "內部確認、臨時提供畫面、主管或客戶急著看某段錄影時使用。",
         "好處：處理流程較單純，所以速度較快。",
-        "好處：適合快速匯出單純影片片段。",
+        "適合快速匯出單純影片片段。",
         "限制：功能限制較多，可調整或後製的項目較少。",
-        "限制：不適合需要正式後製、多項匯出設定或完整處理的影片。"
+        "不適合需要正式後製、多項匯出設定或完整處理的影片。"
       ]
     },
-
+    {type: "space"},
     {
       type: "list",
       title: "3. Playback → Setup → Display Sub Stream Priority",
@@ -101,19 +101,7 @@ notes.push({
         "注意：這不是提升畫質，而是用較低解析度換取流暢度。"
       ]
     },
-    {
-      type: "list",
-      title: "Display Sub Stream Priority 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：多分割 Playback、同時回放多支 Camera、主機效能不足或 CPU 使用率偏高時使用。",
-        "運用場景：只需要快速確認事件時間點，不需要看高畫質細節時使用。",
-        "好處：降低系統負擔，讓多路回放比較順，減少卡頓或掉幀。",
-        "好處：對低效能主機、多路高解析 Camera 回放特別有幫助。",
-        "限制：因為優先使用低解析 Sub Stream，畫面細節會比 Main Stream 少。",
-        "限制：若要看車牌、人臉、細節證據，可能需要切回 Main Stream 或用較高畫質回放確認。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "4. Record Database 的用途",
@@ -126,19 +114,7 @@ notes.push({
         "簡單記：影片檔是內容，Database 是索引與事件資料。"
       ]
     },
-    {
-      type: "list",
-      title: "Record Database 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：Playback 時間軸顯示、事件查詢、錄影搜尋、Camera 對應與錄影管理都會依賴 Database。",
-        "運用場景：排查錄影存在但時間軸看不到、事件查不到、回放索引異常時，需要考慮 Database 是否異常。",
-        "好處：讓 VMS 可以快速知道哪支 Camera 在什麼時間有錄影、有哪些事件，方便 Playback 與事件查詢。",
-        "好處：把錄影檔與時間軸、Camera、事件關聯起來，讓使用者不用手動找檔案。",
-        "限制：Database 不是影片本體，所以只備份 Database 不能取代錄影檔。",
-        "限制：Database 異常時，可能不是錄影檔消失，而是索引或事件資料無法正確對應。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "5. PVD Size Filter 與 1/80",
@@ -151,19 +127,7 @@ notes.push({
         "簡單記：Size Filter 擋太小的目標；1/80 是畫面尺寸比例。"
       ]
     },
-    {
-      type: "list",
-      title: "PVD Size Filter 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：遠方小物體、反光、陰影、雜訊或畫面邊緣小目標常被誤判成人 / 車時，可調整 Size Filter。",
-        "運用場景：只想偵測靠近鏡頭或畫面中較明顯的人 / 車，不想讓太小的目標觸發事件時使用。",
-        "好處：可過濾太小的偵測目標，降低誤報。",
-        "好處：搭配 Confidence、ROI、Mask 使用，可以讓 PVD 判斷更穩定。",
-        "限制：Size Filter 設太大，遠方真的有人或車可能被過濾掉，造成漏判。",
-        "限制：Size Filter 只處理尺寸條件，不代表能解決所有誤判，仍要搭配光線、角度、Mask、Confidence 等設定。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "6. PTZ Camera Auto Set 支援的紀錄方式",
@@ -174,20 +138,8 @@ notes.push({
         "簡單記：AutoPan 是兩點水平掃描；Cruise 是記錄人工操作路徑。"
       ]
     },
-    {
-      type: "list",
-      title: "AutoPan / Cruise 的運用場景 / 好處 / 限制",
-      items: [
-        "AutoPan 運用場景：需要 PTZ 在左右兩個固定方向之間來回掃描，例如門口兩側、走廊左右端、停車場左右範圍。",
-        "Cruise 運用場景：需要記錄一段人工操作 PTZ 的巡視路徑，例如先看門口、再 Zoom 到櫃台、再轉到走廊。",
-        "AutoPan 好處：設定簡單，適合單純左右掃描。",
-        "Cruise 好處：可記錄較複雜的 PTZ 操作路徑，包含移動、Zoom 與速度。",
-        "AutoPan 限制：主要是水平兩點來回，不適合複雜巡航路徑。",
-        "Cruise 限制：依賴使用者錄製路徑，錄製時操作不順或速度不對，播放巡航時也會受到影響。"
-      ]
-    },
-
-    {
+    {type: "space"},
+    { 
       type: "list",
       title: "7. PTZ Setup → Tracking Pause Interval",
       items: [
@@ -196,18 +148,7 @@ notes.push({
         "簡單記：Tracking Pause Interval = PTZ 停止追蹤後要暫停多久。"
       ]
     },
-    {
-      type: "list",
-      title: "Tracking Pause Interval 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：PTZ Tracking 追蹤目標後，不希望鏡頭馬上恢復巡航或立刻切換到其他動作時使用。",
-        "運用場景：有人手動操作 PTZ 或系統有 Auto Function / Tour 時，用來降低不同控制邏輯互搶的感覺。",
-        "好處：讓 PTZ Tracking 停止後有緩衝時間，畫面切換不會太急。",
-        "好處：可降低追蹤、巡航、手動控制之間頻繁切換造成的不穩定感。",
-        "限制：設定太短，PTZ 可能太快恢復其他動作；設定太長，PTZ 可能停留太久，延遲後續巡航或自動功能。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "8. PTZ Setup → Multiple Position Tour",
@@ -219,19 +160,7 @@ notes.push({
         "簡單記：Multiple Position Tour = PTZ 依序跑多個 Preset Point。"
       ]
     },
-    {
-      type: "list",
-      title: "Multiple Position Tour 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：同一支 PTZ 需要固定巡視多個重要區域，例如門口、櫃台、走廊、倉庫入口。",
-        "運用場景：現場沒有操作員一直手動控制 PTZ，但希望 PTZ 自動巡視時使用。",
-        "好處：能讓單支 PTZ 覆蓋多個固定視角，降低人工操作需求。",
-        "好處：搭配 Dwell Time 可控制每個 Preset 停留時間。",
-        "限制：PTZ 轉到其他點時，原本視角就看不到了，不像多支固定 Camera 可以同時觀看所有方向。",
-        "限制：如果巡航點太多或停留時間太長，某些區域可能無法即時看到。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "9. PTZ Setup → Schedule",
@@ -243,19 +172,7 @@ notes.push({
         "簡單記：Tour 是跑哪些點；PTZ Setup 裡的 Schedule 是閒置後要不要回到排程 / 自動動作。"
       ]
     },
-    {
-      type: "list",
-      title: "PTZ Schedule 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：希望 PTZ 在特定時段執行自動功能，或在閒置後回到指定排程 / 自動動作時使用。",
-        "運用場景：營業時間和非營業時間需要不同 PTZ 行為，例如白天固定看櫃台，晚上自動巡航。",
-        "好處：可讓 PTZ 行為依時間或閒置狀態自動切換，減少人工操作。",
-        "好處：搭配 Idle Protection 可避免 PTZ 被手動移走後長時間停在不該看的位置。",
-        "限制：Schedule 不是巡航路線本身，路線仍要由 Preset、Auto Function 或 Multiple Position Tour 等功能設定。",
-        "限制：實際執行行為會受 PTZ 型號、支援功能、Idle Time、Auto Function 設定影響。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "10. Configure → Object Tracking Config",
@@ -273,19 +190,7 @@ notes.push({
       title: "PTZ Auto Tracking 與 Object Tracking Config 差異",
       content: "PTZ Auto Tracking 是 PTZ Camera 自己看自己的畫面並追蹤；Object Tracking Config 則是固定鏡頭偵測目標，再由 VMS 控制 PTZ Camera 轉向與 Zoom。"
     },
-    {
-      type: "list",
-      title: "Object Tracking Config 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：希望固定 Camera 監看大範圍畫面，再由 PTZ 自動轉向並放大追蹤目標時使用。",
-        "運用場景：固定鏡頭適合偵測位置，但需要 PTZ 提供細節放大畫面，例如入口、廣場、走廊或停車場。",
-        "好處：Fixed Camera 畫面不會動，適合做偵測區域與目標位置判斷。",
-        "好處：PTZ 可以負責放大與追蹤，補足固定 Camera 看不清細節的問題。",
-        "限制：Fixed Camera 與 PTZ Camera 的視角、安裝位置、距離與解析度不可能完全一致，需要校正與現場調整。",
-        "限制：如果 PTZ 自身 Auto Tracking 同時開啟，可能與 VMS Object Tracking 控制邏輯互相干擾。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "11. Fisheye Tracking 的條件",
@@ -298,19 +203,7 @@ notes.push({
         "簡單記：Fisheye Tracking = 360 Degree View + moving object / Motion。"
       ]
     },
-    {
-      type: "list",
-      title: "Fisheye Tracking 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：魚眼 Camera 固定安裝，但希望在 360 畫面中自動追蹤移動物件時使用。",
-        "運用場景：大廳、櫃台、走廊交會處、開放空間等需要廣角監看，又想快速注意移動目標時使用。",
-        "好處：魚眼 Camera 不需要實體轉動，就能在 360 畫面中追蹤移動物件。",
-        "好處：搭配 Dewarp，可讓使用者更容易看懂魚眼畫面中的目標移動。",
-        "限制：追蹤條件受 Motion、Object Size、Mask、Dwell Time 影響，太小、太快、遮擋或光線不佳的目標可能追蹤不穩。",
-        "限制：它不是 AI 人車辨識本身，不要把 Fisheye Tracking 直接等同 PVD / AI Event。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "12. Fisheye Settings → 360 Degree → 360 Object Tracking → Advanced Settings",
@@ -323,19 +216,7 @@ notes.push({
         "簡單記：Advanced Settings = Mask、Object Size、Dwell Time、Schedule。"
       ]
     },
-    {
-      type: "list",
-      title: "360 Object Tracking Advanced Settings 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：魚眼追蹤一直被反光、樹葉、螢幕閃爍、固定物晃動干擾時，可設定 Mask Region。",
-        "運用場景：只想追蹤特定大小的移動物件，不想追太小雜訊或太大畫面變化時，可調整 Object Size。",
-        "運用場景：畫面追蹤切換太頻繁、一直跳動時，可用 Dwell Time of Motion 增加停留時間。",
-        "好處：可控制哪些區域、哪些大小、什麼時間才啟用追蹤，降低誤追蹤。",
-        "好處：讓 Fisheye Tracking 比較穩定，不會因小雜訊或短暫 Motion 一直跳畫面。",
-        "限制：Mask 設太多可能漏掉真正目標；Object Size 設太嚴可能追不到；Dwell Time 太長可能忽略新的移動目標。"
-      ]
-    },
-
+    {type: "space"},
     {
       type: "list",
       title: "13. Fisheye Settings → Single View → Guard Tour Setting",
@@ -347,21 +228,7 @@ notes.push({
         "簡單記：Fisheye Guard Tour = 魚眼 Single View 的虛擬 PTZ 巡航。"
       ]
     },
-    {
-      type: "list",
-      title: "Fisheye Guard Tour 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：魚眼 Camera 固定安裝，但希望 Single View 自動巡視不同方向或區域時使用。",
-        "運用場景：例如入口、櫃台、走道、展示區都在同一支魚眼畫面內，希望系統依序切換視角巡視。",
-        "好處：Camera 不需要實體轉動，沒有機械 PTZ 的轉動耗損問題。",
-        "好處：可用一支魚眼 Camera 產生類似 PTZ 巡航的觀看效果。",
-        "限制：只是切換虛擬視角，不會增加原始影像解析度；放大後細節仍受魚眼原始畫質限制。",
-        "限制：同一時間只看 Single View 的某個虛擬視角，其他區域要等巡航切換才會看到。"
-      ]
-    },
-
     { type: "spacer" },
-
     {
       type: "list",
       title: "14. WebCam 的用途與好處（總覽）",
@@ -379,12 +246,12 @@ notes.push({
       title: "WebCam 的運用場景 / 好處 / 限制",
       items: [
         "運用場景：客戶、主管或維護人員不在 VMS 主機旁，但需要遠端看 Live View 或 Playback。",
-        "運用場景：遠端端不方便安裝完整 GV-VMS，只能透過瀏覽器連線查看。",
+        "遠端端不方便安裝完整 GV-VMS，只能透過瀏覽器連線查看。",
         "運用場景：FAE 或 Support 需要遠端確認 Camera 即時畫面、事件紀錄或錄影回放。",
         "好處：遠端端不用安裝完整 VMS，透過瀏覽器即可使用部分功能。",
-        "好處：可提供 Live View、Remote Playback、Event List Query 等遠端查看能力。",
+        "可提供 Live View、Remote Playback、Event List Query 等遠端查看能力。",
         "限制：部分功能可能需要 Web Plugin；瀏覽器、權限、防火牆、Port、網路環境都可能影響連線。",
-        "限制：WebCam 是遠端 Web 存取功能，不是完整取代本機 GV-VMS 操作介面。"
+        "WebCam 是遠端 Web 存取功能，不是完整取代本機 GV-VMS 操作介面。"
       ]
     },
     {
@@ -488,18 +355,6 @@ notes.push({
         "更新前需確認型號、目前 Firmware 版本、目標 Firmware 是否相容、帳號密碼與網路狀態。",
         "更新中不可斷電或拔網路線，建議先停止 VMS 監控與遠端連線。",
         "簡單記：FW Update 列表 = 工具偵測到、可辨識版本，且可進行韌體更新判斷 / 操作的 GV 裝置。"
-      ]
-    },
-    {
-      type: "list",
-      title: "IP Device Utility FW Update 的運用場景 / 好處 / 限制",
-      items: [
-        "運用場景：需要確認多台 GV-IP Camera 或 GV-IP Device 是否有新版 Firmware 可更新時使用。",
-        "運用場景：FAE 測試或案場維護時，需要批次確認設備版本與更新狀態。",
-        "好處：可集中掃描設備，減少逐台登入 Web 介面確認版本的時間。",
-        "好處：支援 Online Update / Manual Update 等方式，依現場網路條件選擇。",
-        "限制：Online Update 受設備支援狀態、網路連外能力、帳密、型號辨識與官方更新資訊影響。",
-        "限制：Firmware 更新有風險，更新中斷電、斷線或用錯版本可能造成設備異常，因此更新前需確認型號、版本與網路穩定。"
       ]
     },
 
